@@ -154,6 +154,9 @@
   }
   .hdr-btn:hover { background: rgba(255,255,255,.12); }
   .hdr-btn.active { background: var(--seal); border-color: var(--seal); }
+  .hdr-btn.accent { background: #2A7D4F; border-color: #2A7D4F; }
+  .hdr-btn.accent:hover { background: #348F5C; border-color: #348F5C; }
+  .hdr-btn[hidden] { display: none; }
   .edit-tools { display: none; gap: 8px; }
   body.editing .edit-tools { display: flex; }
   .mode-toggle {
@@ -517,6 +520,25 @@
     .logo .sub { display: none; }
     .searchwrap { max-width: none; }
   }
+  /* 편집 도구가 늘어나는 편집 모드에서는 좁은 화면일 때 조회용 요소를 접어 버튼 자리를 확보
+     (편집을 끝내면 검색창·보기 전환이 다시 나타납니다) */
+  @media (max-width: 1100px) {
+    body.editing .searchwrap { display: none; }
+  }
+  @media (max-width: 900px) {
+    body.editing .mode-toggle { display: none; }
+    body.editing .sync-chip { max-width: 120px; }
+  }
+  /* 좁은 화면에서는 상태 칩을 줄여 표시 (누르면 전체 내용을 다시 받아옴) */
+  @media (max-width: 620px) {
+    .sync-chip { max-width: 88px; padding: 0 9px; }
+  }
+  @media (max-width: 420px) {
+    .sync-chip { max-width: 70px; }
+  }
+  /* 마지막 안전장치: 어떤 폭에서도 버튼이 화면 밖으로 잘려 못 누르는 일이 없도록 */
+  header { overflow-x: auto; scrollbar-width: none; }
+  header::-webkit-scrollbar { display: none; }
   @media (max-width: 760px) {
     .mt-label { display: none; }
     .mt-btn { padding: 0 10px; }
@@ -552,10 +574,11 @@
   </div>
   <button class="sync-chip" id="sync-chip" title="공용 데이터 상태">·</button>
   <div class="edit-tools">
-    <button class="hdr-btn" id="btn-export">data.json 내보내기</button>
+    <button class="hdr-btn accent" id="btn-gh-save" hidden>GitHub 저장</button>
+    <button class="hdr-btn" id="btn-export">내보내기</button>
     <button class="hdr-btn" id="btn-import">가져오기</button>
     <input type="file" id="import-file" accept=".json,application/json" hidden>
-    <button class="hdr-btn" id="btn-reset">공용본으로 되돌리기</button>
+    <button class="hdr-btn" id="btn-reset">되돌리기</button>
   </div>
   <button class="hdr-btn" id="btn-edit">✎ 편집 모드</button>
 </header>
@@ -1371,6 +1394,144 @@ const EDITOR_KEY = "kkamji_editor";
 let lastEditor = "";
 try { lastEditor = localStorage.getItem(EDITOR_KEY) || ""; } catch (e) {}
 
+/* ── GitHub 직접 저장 ────────────────────────
+   직원이 개인 액세스 토큰(PAT)으로 로그인하면 저장소의 data.json을 바로 고칩니다.
+   저장소 경로는 GitHub Pages 주소에서 자동으로 알아냅니다.
+   (내부 서버 등 다른 곳에 올릴 때만 아래 GITHUB_REPO_OVERRIDE 에 "계정/저장소" 를 적으세요.) */
+const GITHUB_REPO_OVERRIDE = "";
+function detectGithubRepo() {
+  if (GITHUB_REPO_OVERRIDE) return GITHUB_REPO_OVERRIDE;
+  const m = /^([A-Za-z0-9-]+)\.github\.io$/.exec(location.hostname);
+  if (!m) return "";
+  const seg = location.pathname.split("/").filter(Boolean)[0];
+  // 프로젝트 페이지(owner.github.io/repo) / 계정 페이지(owner.github.io)
+  return seg && !/\.html?$/i.test(seg) ? m[1] + "/" + seg : m[1] + "/" + m[1] + ".github.io";
+}
+const GITHUB_REPO = detectGithubRepo();
+const GH_API = GITHUB_REPO
+  ? "https://api.github.com/repos/" + GITHUB_REPO + "/contents/" + SHARED_URL
+  : "";
+const TOKEN_KEY = "kkamji_gh_token";
+let githubToken = "";
+let githubSha = "";
+try { githubToken = sessionStorage.getItem(TOKEN_KEY) || ""; } catch (e) {}
+
+function b64encode(str) {
+  const bytes = new TextEncoder().encode(str);
+  let bin = "";
+  bytes.forEach(b => { bin += String.fromCharCode(b); });
+  return btoa(bin);
+}
+function b64decode(b64) {
+  const bin = atob(String(b64).replace(/\s/g, ""));
+  return new TextDecoder().decode(Uint8Array.from(bin, c => c.charCodeAt(0)));
+}
+function ghHeaders(token) {
+  const h = { Accept: "application/vnd.github+json" };
+  if (token) h.Authorization = "Bearer " + token;
+  return h;
+}
+function forgetToken() {
+  githubToken = ""; githubSha = "";
+  try { sessionStorage.removeItem(TOKEN_KEY); } catch (e) {}
+}
+
+/* 토큰을 받아 저장소 쓰기 권한까지 확인 */
+async function connectGithub() {
+  if (!GH_API) {
+    alert("GitHub 저장소를 찾지 못했습니다.\n\nGitHub Pages 주소로 열면 자동으로 인식합니다.\n다른 곳에 올렸다면 index.html의 GITHUB_REPO_OVERRIDE 에 \"계정/저장소\"를 적어 주세요.");
+    return false;
+  }
+  if (githubToken) return true;
+  const t = (prompt(
+    "GitHub 액세스 토큰(PAT)을 붙여넣으세요.\n" +
+    "저장소: " + GITHUB_REPO + "\n\n" +
+    "GitHub → Settings → Developer settings → Personal access tokens\n" +
+    "→ Fine-grained tokens, 권한 Contents: Read and write"
+  ) || "").trim();
+  if (!t) return false;
+  try {
+    const res = await fetch(GH_API, { headers: ghHeaders(t), cache: "no-store" });
+    if (!res.ok) {
+      alert(res.status === 401 ? "토큰이 유효하지 않습니다."
+          : res.status === 403 ? "이 저장소에 접근할 권한이 없습니다."
+          : res.status === 404 ? "저장소나 data.json을 찾지 못했습니다. (" + GITHUB_REPO + ")"
+          : "인증에 실패했습니다. (오류 " + res.status + ")");
+      return false;
+    }
+    const d = await res.json();
+    githubSha = d.sha;
+    githubToken = t;
+    try { sessionStorage.setItem(TOKEN_KEY, t); } catch (e) {}
+    return true;
+  } catch (e) {
+    alert("GitHub에 연결하지 못했습니다. 인터넷 연결을 확인해 주세요.");
+    return false;
+  }
+}
+
+async function saveToGithub() {
+  if (!(await connectGithub())) return;
+
+  const who = (prompt("작성자 이름을 적어 주세요. (커밋 기록용)", lastEditor || "") || "").trim();
+  if (who) {
+    lastEditor = who;
+    try { localStorage.setItem(EDITOR_KEY, who); } catch (e) {}
+  }
+
+  const btn = $("btn-gh-save");
+  const label = btn.textContent;
+  btn.disabled = true; btn.textContent = "저장 중…";
+  try {
+    // 최신 sha 확보 (다른 사람이 먼저 저장했을 수 있음)
+    const head = await fetch(GH_API, { headers: ghHeaders(githubToken), cache: "no-store" });
+    if (head.ok) githubSha = (await head.json()).sha;
+
+    const stamp = new Date().toISOString();
+    const payload = { updatedAt: stamp, updatedBy: who || "(미기재)", members: DATA };
+    const res = await fetch(GH_API, {
+      method: "PUT",
+      headers: Object.assign(ghHeaders(githubToken), { "Content-Type": "application/json" }),
+      body: JSON.stringify({
+        message: "깜지 답변자료 수정" + (who ? " (" + who + ")" : ""),
+        content: b64encode(JSON.stringify(payload, null, 2) + "\n"),
+        sha: githubSha
+      })
+    });
+
+    if (!res.ok) {
+      if (res.status === 409 || res.status === 422) {
+        alert("다른 분이 방금 먼저 저장했습니다.\n페이지를 새로고침해 최신본을 받은 뒤 다시 저장해 주세요.");
+      } else if (res.status === 401) {
+        forgetToken();
+        alert("토큰이 만료되었습니다. 다시 저장을 눌러 토큰을 입력해 주세요.");
+      } else if (res.status === 403) {
+        alert("이 저장소에 쓰기 권한이 없습니다. 토큰 권한(Contents: Read and write)을 확인해 주세요.");
+      } else {
+        alert("GitHub 저장에 실패했습니다. (오류 " + res.status + ")");
+      }
+      return;
+    }
+
+    const out = await res.json();
+    githubSha = out.content.sha;
+    // 방금 올린 내용이 곧 공용본
+    sharedMembers = JSON.parse(JSON.stringify(DATA));
+    sharedStamp = stamp;
+    sharedInfo = payload;
+    clearLocalDraft();
+    lastExportStamp = null;
+    renderStatus();
+    alert("GitHub에 저장했습니다.\n\nGitHub Pages 주소로 보는 분들은 반영까지 1분 정도 걸릴 수 있습니다.");
+  } catch (e) {
+    alert("GitHub에 연결하지 못했습니다. 인터넷 연결을 확인해 주세요.");
+  } finally {
+    btn.disabled = false; btn.textContent = label;
+  }
+}
+$("btn-gh-save").addEventListener("click", saveToGithub);
+if (GH_API) $("btn-gh-save").hidden = false;
+
 function fmtStamp(iso) {
   if (!iso) return "";
   const d = new Date(iso);
@@ -1405,7 +1566,14 @@ function renderStatus() {
     chip.title = "작성자: " + ((sharedInfo && sharedInfo.updatedBy) || "미기재");
   }
 }
-$("sync-chip").addEventListener("click", () => alert($("sync-chip").title));
+/* 칩을 누르면 최신 공용본을 다시 받아옵니다 (국감 중 새로고침 대용) */
+$("sync-chip").addEventListener("click", async () => {
+  const chip = $("sync-chip");
+  const prev = chip.textContent;
+  chip.textContent = "확인 중…";
+  await syncShared();
+  if (chip.textContent === "확인 중…") chip.textContent = prev;
+});
 
 function showBanner(text) {
   $("banner-text").textContent = text;
@@ -1425,10 +1593,25 @@ $("bn-keep-mine").addEventListener("click", () => {
 
 async function syncShared() {
   let shared = null;
-  try {
-    const res = await fetch(SHARED_URL, { cache: "no-store" });
-    if (res.ok) shared = await res.json();
-  } catch (e) { /* 파일 없음·오프라인·file:// 직접 열기 */ }
+  // 토큰이 있는 직원은 GitHub API로 최신본을 직접 받습니다(Pages 반영 지연 없음).
+  if (githubToken && GH_API) {
+    try {
+      const res = await fetch(GH_API, { headers: ghHeaders(githubToken), cache: "no-store" });
+      if (res.ok) {
+        const d = await res.json();
+        githubSha = d.sha;
+        shared = JSON.parse(b64decode(d.content));
+      } else if (res.status === 401) {
+        forgetToken();
+      }
+    } catch (e) { /* 오프라인 → 아래 파일 방식으로 */ }
+  }
+  if (!shared) {
+    try {
+      const res = await fetch(SHARED_URL, { cache: "no-store" });
+      if (res.ok) shared = await res.json();
+    } catch (e) { /* 파일 없음·오프라인·file:// 직접 열기 */ }
+  }
 
   const local = readLocal();
 
