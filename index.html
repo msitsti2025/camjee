@@ -1,0 +1,1471 @@
+<meta charset="utf-8">
+<title>깜지 — 과방위 국정감사 질의·답변</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root {
+    --paper: #F6F7F4;
+    --panel: #FFFFFF;
+    --ink: #1C1E22;
+    --ink-soft: #5A6068;
+    --line: #DFE2DC;
+    --navy: #233C6B;
+    --navy-deep: #1A2C4F;
+    --seal: #B0392E;
+    --q-bg: #FFF3BF;
+    --q-line: #E8D26B;
+    --q-label: #8A6D00;
+    --sel-bg: #EEF2F9;
+    --sel-edge: #233C6B;
+    --dem: #152484;
+    --ppp: #E61E2B;
+    --cho: #0057A8;
+    --ind: #667085;
+    --chip-bg: #EEF0EA;
+    --mark-bg: #FFE24D;
+    --mark-ink: #1C1E22;
+    --shadow: 0 1px 3px rgba(20,25,35,.08);
+    --fs-scale: 1;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #14161A;
+      --panel: #1D2026;
+      --ink: #E7E9EC;
+      --ink-soft: #9AA1AB;
+      --line: #2C3038;
+      --navy: #8FA9D8;
+      --navy-deep: #10182A;
+      --seal: #C9564A;
+      --q-bg: #3A3312;
+      --q-line: #6B5C1E;
+      --q-label: #E4C95B;
+      --sel-bg: #262E3E;
+      --sel-edge: #8FA9D8;
+      --dem: #6C7FE0;
+      --ppp: #F0666F;
+      --cho: #5B9BD5;
+      --ind: #8B93A1;
+      --chip-bg: #2A2E36;
+      --mark-bg: #C9A93A;
+      --mark-ink: #14161A;
+      --shadow: 0 1px 3px rgba(0,0,0,.4);
+    }
+  }
+  :root[data-theme="light"] {
+    --paper: #F6F7F4; --panel: #FFFFFF; --ink: #1C1E22; --ink-soft: #5A6068;
+    --line: #DFE2DC; --navy: #233C6B; --navy-deep: #1A2C4F; --seal: #B0392E;
+    --q-bg: #FFF3BF; --q-line: #E8D26B; --q-label: #8A6D00;
+    --sel-bg: #EEF2F9; --sel-edge: #233C6B;
+    --dem: #152484; --ppp: #E61E2B; --cho: #0057A8; --ind: #667085;
+    --chip-bg: #EEF0EA; --shadow: 0 1px 3px rgba(20,25,35,.08);
+    --mark-bg: #FFE24D; --mark-ink: #1C1E22;
+  }
+  :root[data-theme="dark"] {
+    --paper: #14161A; --panel: #1D2026; --ink: #E7E9EC; --ink-soft: #9AA1AB;
+    --line: #2C3038; --navy: #8FA9D8; --navy-deep: #10182A; --seal: #C9564A;
+    --q-bg: #3A3312; --q-line: #6B5C1E; --q-label: #E4C95B;
+    --sel-bg: #262E3E; --sel-edge: #8FA9D8;
+    --dem: #6C7FE0; --ppp: #F0666F; --cho: #5B9BD5; --ind: #8B93A1;
+    --chip-bg: #2A2E36; --shadow: 0 1px 3px rgba(0,0,0,.4);
+    --mark-bg: #C9A93A; --mark-ink: #14161A;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body {
+    font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont,
+      "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.55;
+    overflow: hidden;
+  }
+  button { font: inherit; cursor: pointer; color: inherit; }
+  input, textarea { font: inherit; color: var(--ink); }
+  :focus-visible { outline: 2px solid var(--navy); outline-offset: 1px; }
+
+  /* ── 상단 헤더 ─────────────────────────── */
+  header {
+    height: 56px;
+    background: var(--navy-deep);
+    color: #F2F4F8;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 0 16px;
+  }
+  .logo { display: flex; align-items: center; gap: 10px; flex: none; }
+  .logo .seal {
+    width: 38px; height: 38px;
+    background: var(--seal);
+    color: #FFF;
+    border-radius: 6px;
+    display: grid; place-items: center;
+    font-weight: 800; font-size: 15px;
+    letter-spacing: 1px;
+    box-shadow: inset 0 0 0 2px rgba(255,255,255,.25);
+  }
+  .logo .name { font-size: 19px; font-weight: 800; letter-spacing: 2px; }
+  .logo .sub { font-size: 12px; opacity: .75; margin-left: 2px; }
+  .searchwrap { position: relative; flex: 1; max-width: 420px; margin-left: auto; }
+  .searchwrap input {
+    width: 100%; height: 34px;
+    border: 1px solid rgba(255,255,255,.25);
+    background: rgba(255,255,255,.12);
+    color: #FFF;
+    border-radius: 17px;
+    padding: 0 14px;
+    font-size: 14px;
+  }
+  .searchwrap input::placeholder { color: rgba(255,255,255,.55); }
+  .search-results {
+    position: absolute; top: 40px; left: 0; right: 0;
+    background: var(--panel);
+    color: var(--ink);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(10,15,25,.25);
+    max-height: 55vh; overflow-y: auto;
+    z-index: 50;
+    display: none;
+  }
+  .search-results.open { display: block; }
+  .search-results button {
+    display: block; width: 100%; text-align: left;
+    padding: 10px 14px;
+    border: 0; background: none;
+    border-bottom: 1px solid var(--line);
+  }
+  .search-results button:last-child { border-bottom: 0; }
+  .search-results button:hover { background: var(--sel-bg); }
+  .sr-member { font-size: 12px; color: var(--ink-soft); }
+  .sr-title { font-weight: 600; }
+  .hdr-btn {
+    flex: none;
+    height: 34px;
+    padding: 0 14px;
+    border-radius: 17px;
+    border: 1px solid rgba(255,255,255,.3);
+    background: transparent;
+    color: #F2F4F8;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .hdr-btn:hover { background: rgba(255,255,255,.12); }
+  .hdr-btn.active { background: var(--seal); border-color: var(--seal); }
+  .edit-tools { display: none; gap: 8px; }
+  body.editing .edit-tools { display: flex; }
+  .mode-toggle {
+    flex: none;
+    display: flex;
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 17px;
+    overflow: hidden;
+  }
+  .mt-btn {
+    height: 32px;
+    padding: 0 12px;
+    border: 0;
+    background: transparent;
+    color: #F2F4F8;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .mt-btn.active { background: rgba(255,255,255,.22); }
+  .mt-btn:not(.active):hover { background: rgba(255,255,255,.1); }
+
+  /* ── 공용 데이터 상태 표시 ────────────────── */
+  .sync-chip {
+    flex: none;
+    height: 30px;
+    padding: 0 12px;
+    border-radius: 15px;
+    border: 1px solid rgba(255,255,255,.3);
+    background: transparent;
+    color: #F2F4F8;
+    font-size: 12.5px;
+    font-weight: 700;
+    white-space: nowrap;
+    max-width: 210px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .sync-chip.draft { background: var(--seal); border-color: var(--seal); }
+  .sync-chip.offline { opacity: .6; }
+  #banner {
+    flex: none;
+    display: flex; align-items: center; flex-wrap: wrap; gap: 10px;
+    padding: 9px 16px;
+    background: var(--q-bg);
+    color: var(--ink);
+    border-bottom: 1px solid var(--q-line);
+    font-size: 13.5px;
+  }
+  #banner[hidden] { display: none; }
+  .banner-btns { display: flex; gap: 8px; margin-left: auto; }
+  .bn-btn {
+    border: 1px solid var(--q-line);
+    background: transparent;
+    color: var(--ink);
+    border-radius: 8px;
+    padding: 5px 12px;
+    font-size: 13px; font-weight: 600;
+    white-space: nowrap;
+  }
+  .bn-btn.primary { background: var(--navy); border-color: var(--navy); color: var(--paper); }
+  :root[data-theme="light"] .bn-btn.primary { color: #FFF; }
+
+  /* ── 3분할 레이아웃 ─────────────────────── */
+  body { display: flex; flex-direction: column; }
+  header { flex: none; }
+  main {
+    flex: 1;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: 20% 30% 50%;
+  }
+  .pane { display: flex; flex-direction: column; min-height: 0; border-right: 1px solid var(--line); }
+  .pane:last-child { border-right: 0; }
+  .pane-head {
+    flex: none;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--line);
+    background: var(--panel);
+    display: flex; align-items: center; gap: 8px;
+    min-height: 48px;
+  }
+  .pane-title { font-size: 13px; font-weight: 700; color: var(--ink-soft); letter-spacing: .08em; }
+  .pane-body { flex: 1; overflow-y: auto; min-height: 0; }
+  .back-btn {
+    display: none;
+    flex: none;
+    white-space: nowrap;
+    border: 1px solid var(--line); background: var(--panel);
+    border-radius: 8px; padding: 5px 11px; font-size: 13px; font-weight: 600;
+  }
+  #qa-head-title { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+  /* ── ① 위원 패널 ───────────────────────── */
+  #pane-members .pane-body { padding: 10px; }
+  .chair-box {
+    width: 100%;
+    border: 0;
+    background: var(--navy);
+    color: #FFF;
+    border-radius: 10px;
+    padding: 12px 10px;
+    text-align: center;
+    margin-bottom: 10px;
+    box-shadow: var(--shadow);
+  }
+  :root[data-theme="dark"] .chair-box, .dark-chair { color: #10182A; }
+  @media (prefers-color-scheme: dark) { .chair-box { color: #10182A; } }
+  :root[data-theme="light"] .chair-box { color: #FFF; }
+  .chair-box .role { font-size: 12px; letter-spacing: .12em; opacity: .8; }
+  .chair-box .nm { font-size: clamp(19px, 1.75vw, 26px); font-weight: 800; margin-top: 2px; }
+  .party-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .party-col { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+  .party-label {
+    font-size: 12.5px; font-weight: 700; text-align: center;
+    letter-spacing: .05em; padding: 4px 0;
+    border-radius: 6px; color: #FFF;
+  }
+  .party-label.dem { background: var(--dem); }
+  .party-label.ppp { background: var(--ppp); }
+  .m-box {
+    border: 1px solid var(--line);
+    border-left: 5px solid var(--ind);
+    background: var(--panel);
+    border-radius: 8px;
+    padding: 10px 4px;
+    min-height: 58px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1px;
+    text-align: center;
+    box-shadow: var(--shadow);
+    position: relative;
+  }
+  .m-box.dem { border-left-color: var(--dem); }
+  .m-box.ppp { border-left-color: var(--ppp); }
+  .m-box.cho { border-left-color: var(--cho); }
+  .m-name {
+    font-size: clamp(17px, 1.55vw, 23px);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -.02em;
+  }
+  .m-sub { font-size: 12px; color: var(--ink-soft); font-weight: 600; line-height: 1.2; }
+  .m-box.sel { background: var(--sel-bg); border-color: var(--sel-edge); box-shadow: 0 0 0 2px var(--sel-edge); }
+  .m-box.sel .m-name { color: var(--navy); }
+  .m-box .cnt {
+    position: absolute; top: 3px; right: 5px;
+    font-size: 11px; font-weight: 700;
+    color: var(--ink-soft);
+    font-variant-numeric: tabular-nums;
+  }
+  .etc-label {
+    margin: 12px 0 6px;
+    font-size: 12px; font-weight: 700; color: var(--ink-soft);
+    text-align: center; letter-spacing: .08em;
+  }
+  .etc-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+
+  /* ── ② 질문 목록 패널 ───────────────────── */
+  #pane-questions .pane-head { flex-wrap: wrap; }
+  #q-member-name { font-size: 18px; font-weight: 800; }
+  .p-chip {
+    font-size: 12px; font-weight: 700; color: #FFF;
+    border-radius: 5px; padding: 2px 8px;
+  }
+  .p-chip.dem { background: var(--dem); }
+  .p-chip.ppp { background: var(--ppp); }
+  .p-chip.cho { background: var(--cho); }
+  .p-chip.ind { background: var(--ind); }
+  #q-filter {
+    margin-left: auto;
+    height: 30px; width: 110px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--paper);
+    padding: 0 10px;
+    font-size: 13px;
+  }
+  .q-list { list-style: none; }
+  .q-row {
+    width: 100%;
+    display: flex; gap: 11px; align-items: flex-start;
+    text-align: left;
+    padding: 13px 14px;
+    background: none; border: 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .q-row:hover { background: var(--sel-bg); }
+  .q-row.sel { background: var(--sel-bg); box-shadow: inset 4px 0 0 var(--sel-edge); }
+  .q-num {
+    flex: none;
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    background: var(--chip-bg);
+    color: var(--ink-soft);
+    display: grid; place-items: center;
+    font-size: 14px; font-weight: 700;
+    font-variant-numeric: tabular-nums;
+  }
+  .q-row.filled .q-num { background: var(--navy); color: var(--paper); }
+  .q-main { min-width: 0; }
+  .q-title { font-weight: 700; font-size: clamp(15.5px, 1.35vw, 19px); line-height: 1.4; }
+  .q-row.sel .q-title { color: var(--navy); }
+  .q-row.empty .q-title { color: var(--ink-soft); font-weight: 500; }
+  .q-kws { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 5px; }
+  .kw {
+    font-size: 12.5px;
+    background: var(--chip-bg);
+    color: var(--ink-soft);
+    border-radius: 4px;
+    padding: 1px 7px;
+  }
+  .q-code { font-size: 12px; color: var(--ink-soft); margin-top: 4px; }
+  .add-row {
+    display: none;
+    margin: 10px 14px 20px;
+    padding: 8px 14px;
+    border: 1px dashed var(--line);
+    border-radius: 8px;
+    background: none;
+    color: var(--ink-soft);
+    font-size: 13px; font-weight: 600;
+    width: calc(100% - 28px);
+  }
+  body.editing .add-row { display: block; }
+  .add-row:hover { border-color: var(--navy); color: var(--navy); }
+
+  /* ── ③ 질의/답변 패널 ───────────────────── */
+  #pane-qa .pane-body { display: flex; flex-direction: column; overflow: hidden; }
+  /* 질문 패드는 내용만큼만 차지하고(최대 55%), 남는 공간은 답변이 채움 */
+  .qa-question {
+    --q-lh: calc(16.5px * var(--fs-scale) * 1.55);
+    flex: 0 0 auto;
+    max-height: 55%;
+    background: var(--q-bg);
+    background-image: repeating-linear-gradient(
+      to bottom,
+      transparent 0 calc(var(--q-lh) - 1px),
+      color-mix(in srgb, var(--q-line) 45%, transparent) calc(var(--q-lh) - 1px) var(--q-lh));
+    background-position: 0 calc(14px + var(--q-lh) * .82);
+    border-bottom: 2px solid var(--q-line);
+    overflow-y: auto;
+    padding: 14px 20px 16px;
+  }
+  .qa-answer { flex: 1 1 0; min-height: 0; overflow-y: auto; padding: 14px 20px 30px; background: var(--panel); }
+  .qa-label {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 12px; font-weight: 800; letter-spacing: .15em;
+    margin-bottom: 8px;
+  }
+  .qa-question .qa-label { color: var(--q-label); }
+  .qa-answer .qa-label { color: var(--navy); }
+  .qa-code {
+    font-size: 11px; font-weight: 700;
+    border: 1px solid currentColor;
+    border-radius: 4px; padding: 1px 6px;
+    letter-spacing: 0;
+  }
+  .qa-q-text { font-size: calc(16.5px * var(--fs-scale)); line-height: 1.55; font-weight: 700; max-width: 46em; }
+  .qa-a-text { font-size: calc(15px * var(--fs-scale)); max-width: 46em; }
+  .qa-q-text.qa-empty, .qa-a-text.qa-empty { font-weight: 400; color: var(--ink-soft); }
+
+  /* 마크업 서식 */
+  .qa-q-text h3, .qa-a-text h3 { font-size: 1.3em; margin: .7em 0 .3em; }
+  .qa-q-text h4, .qa-a-text h4 { font-size: 1.15em; margin: .6em 0 .25em; }
+  .qa-q-text ul, .qa-a-text ul { padding-left: 1.4em; margin: .3em 0; }
+  .qa-q-text blockquote, .qa-a-text blockquote {
+    border-left: 3px solid var(--q-line);
+    padding: 2px 0 2px 12px;
+    color: var(--ink-soft);
+    margin: .4em 0;
+  }
+  .qa-q-text code, .qa-a-text code { background: var(--chip-bg); border-radius: 4px; padding: 1px 6px; font-size: .92em; }
+  .qa-q-text hr, .qa-a-text hr { border: 0; border-top: 1px dashed var(--line); margin: .8em 0; }
+  .qa-q-text mark, .qa-a-text mark { background: var(--mark-bg); color: var(--mark-ink); padding: 0 3px; border-radius: 3px; }
+  .qa-q-text img, .qa-a-text img {
+    display: block;
+    max-width: 100%;
+    margin: 8px 0;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+  }
+  .md-gap { height: .85em; }
+
+  /* 글자 크기 조절 */
+  .fs-ctrl { margin-left: auto; display: flex; align-items: center; gap: 4px; }
+  .fs-btn {
+    width: 36px; height: 30px;
+    border: 1px solid var(--line);
+    background: var(--panel);
+    border-radius: 8px;
+    font-weight: 700; font-size: 13px;
+  }
+  .fs-btn:hover { border-color: var(--navy); color: var(--navy); }
+  #fs-level {
+    font-size: 12px; color: var(--ink-soft);
+    min-width: 40px; text-align: center;
+    font-variant-numeric: tabular-nums;
+  }
+  .qa-contact {
+    margin-top: 14px;
+    font-size: 12.5px; color: var(--ink-soft);
+    border-top: 1px dashed var(--line);
+    padding-top: 8px;
+  }
+  .qa-empty { color: var(--ink-soft); font-size: 14px; padding: 20px 0; }
+
+  #qa-view { display: flex; flex-direction: column; flex: 1; min-height: 0; }
+
+  /* 편집 폼 */
+  .edit-form { display: none; flex-direction: column; gap: 10px; padding: 14px 20px 30px; overflow-y: auto; flex: 1; }
+  body.editing #qa-view { display: none; }
+  body.editing .edit-form { display: flex; }
+  .edit-form label { font-size: 12px; font-weight: 700; color: var(--ink-soft); }
+  .edit-form input, .edit-form textarea {
+    width: 100%;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--panel);
+    padding: 8px 10px;
+    font-size: 14px;
+  }
+  .edit-form textarea { resize: vertical; line-height: 1.55; }
+  .edit-form textarea.dragover { outline: 2px dashed var(--navy); outline-offset: -2px; }
+  .md-hint { font-size: 12px; color: var(--ink-soft); line-height: 1.6; margin-top: -4px; }
+  .md-hint code { background: var(--chip-bg); border-radius: 3px; padding: 0 4px; }
+  #ef-question { background: var(--q-bg); min-height: 110px; }
+  #ef-answer { min-height: 200px; }
+  .ef-btns { display: flex; gap: 8px; margin-top: 4px; }
+  .btn-primary {
+    background: var(--navy); color: var(--paper);
+    border: 0; border-radius: 8px;
+    padding: 9px 22px; font-weight: 700; font-size: 14px;
+  }
+  :root[data-theme="light"] .btn-primary { color: #FFF; }
+  .btn-ghost {
+    background: none; border: 1px solid var(--line);
+    border-radius: 8px; padding: 9px 16px; font-size: 14px; color: var(--ink-soft);
+  }
+  .btn-danger { border-color: var(--seal); color: var(--seal); }
+  .save-note { font-size: 12px; color: var(--ink-soft); }
+
+  /* ── 보기 방식: 페이지 넘김 (mode-step) ────── */
+  body.mode-step main { grid-template-columns: 100%; }
+  body.mode-step .pane {
+    display: none;
+    border-right: 0;
+    width: 100%;
+    max-width: 820px;
+    margin: 0 auto;
+  }
+  body.mode-step[data-view="members"]   #pane-members   { display: flex; }
+  body.mode-step[data-view="questions"] #pane-questions { display: flex; }
+  body.mode-step[data-view="qa"]        #pane-qa        { display: flex; }
+  body.mode-step .back-btn { display: inline-block; }
+  body.mode-step .qa-question { max-height: 45%; }
+
+  @media (max-width: 900px) {
+    .logo .sub { display: none; }
+    .searchwrap { max-width: none; }
+  }
+  @media (max-width: 760px) {
+    .mt-label { display: none; }
+    .mt-btn { padding: 0 10px; }
+  }
+  /* 좁은 화면에서는 로고 글자를 접어 검색창 폭을 확보 (도장 아이콘이 이름 역할) */
+  @media (max-width: 620px) {
+    header { gap: 8px; padding: 0 10px; }
+    .logo .name { display: none; }
+    .searchwrap { min-width: 90px; }
+    .hdr-btn { padding: 0 10px; }
+    #btn-edit { font-size: 0; padding: 0 12px; }
+    #btn-edit::before { content: "✎"; font-size: 16px; }
+    #btn-edit.active::before { content: "✓"; }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .m-box, .q-row { transition: background .12s ease; }
+  }
+</style>
+
+<header>
+  <div class="logo">
+    <span class="seal" aria-hidden="true">깜지</span>
+    <span class="name">깜지</span>
+    <span class="sub">과방위 국정감사 질의·답변 (2026.10)</span>
+  </div>
+  <div class="searchwrap">
+    <input id="g-search" type="search" placeholder="전체 질문 검색 (제목·키워드·내용)" autocomplete="off">
+    <div id="g-results" class="search-results"></div>
+  </div>
+  <div class="mode-toggle" role="group" aria-label="보기 방식">
+    <button class="mt-btn" id="mode-panes" title="한 화면에 위원·질문·답변을 모두 표시">▦<span class="mt-label"> 한 화면</span></button>
+    <button class="mt-btn" id="mode-step" title="위원 → 질문 → 답변 순으로 페이지 이동">▤<span class="mt-label"> 페이지</span></button>
+  </div>
+  <button class="sync-chip" id="sync-chip" title="공용 데이터 상태">·</button>
+  <div class="edit-tools">
+    <button class="hdr-btn" id="btn-export">data.json 내보내기</button>
+    <button class="hdr-btn" id="btn-import">가져오기</button>
+    <input type="file" id="import-file" accept=".json,application/json" hidden>
+    <button class="hdr-btn" id="btn-reset">공용본으로 되돌리기</button>
+  </div>
+  <button class="hdr-btn" id="btn-edit">✎ 편집 모드</button>
+</header>
+
+<div id="banner" hidden>
+  <span id="banner-text"></span>
+  <span class="banner-btns">
+    <button class="bn-btn primary" id="bn-take-shared">공용본 불러오기</button>
+    <button class="bn-btn" id="bn-keep-mine">내 수정본 계속 쓰기</button>
+  </span>
+</div>
+
+<main>
+  <!-- ① 위원 명단 -->
+  <section class="pane" id="pane-members" aria-label="위원 명단">
+    <div class="pane-head">
+      <span class="pane-title">과방위 위원 (19인)</span>
+    </div>
+    <div class="pane-body" id="members-body"></div>
+  </section>
+
+  <!-- ② 질문 목록 -->
+  <section class="pane" id="pane-questions" aria-label="예상 질문 목록">
+    <div class="pane-head">
+      <button class="back-btn" id="back-to-members">← 위원</button>
+      <span id="q-member-name"></span>
+      <span id="q-member-party" class="p-chip"></span>
+      <input id="q-filter" type="search" placeholder="필터" autocomplete="off">
+    </div>
+    <div class="pane-body">
+      <ul class="q-list" id="q-list"></ul>
+      <button class="add-row" id="btn-add-q">＋ 질문 행 추가</button>
+    </div>
+  </section>
+
+  <!-- ③ 질의 / 답변 -->
+  <section class="pane" id="pane-qa" aria-label="질의 및 답변">
+    <div class="pane-head">
+      <button class="back-btn" id="back-to-questions">← 질문 목록</button>
+      <span class="pane-title" id="qa-head-title">질의 · 답변</span>
+      <div class="fs-ctrl" role="group" aria-label="글자 크기 조절">
+        <button class="fs-btn" id="fs-minus" title="글자 작게">가−</button>
+        <span id="fs-level">100%</span>
+        <button class="fs-btn" id="fs-plus" title="글자 크게">가＋</button>
+      </div>
+    </div>
+    <div class="pane-body">
+      <div id="qa-view">
+        <div class="qa-question">
+          <div class="qa-label">질 문 <span class="qa-code" id="qa-code"></span></div>
+          <div class="qa-q-text" id="qa-q"></div>
+        </div>
+        <div class="qa-answer">
+          <div class="qa-label">답 변</div>
+          <div class="qa-a-text" id="qa-a"></div>
+          <div class="qa-contact" id="qa-c"></div>
+        </div>
+      </div>
+      <div class="edit-form" id="edit-form">
+        <label for="ef-title">질문 제목</label>
+        <input id="ef-title" placeholder="예: 지역불균형 해소">
+        <label for="ef-kws">키워드 (쉼표로 구분)</label>
+        <input id="ef-kws" placeholder="예: 지역균형발전, R&D">
+        <label for="ef-code">관리번호 (선택)</label>
+        <input id="ef-code" placeholder="예: 과기1-①">
+        <label for="ef-question">질문 내용</label>
+        <textarea id="ef-question"></textarea>
+        <label for="ef-answer">답변 내용</label>
+        <textarea id="ef-answer"></textarea>
+        <div class="md-hint">
+          서식: <code>**굵게**</code> · <code>==형광펜==</code> · <code># 큰제목</code> · <code>## 중간제목</code> · <code>- 목록</code> · <code>&gt; 인용</code> · <code>---</code> 구분선<br>
+          그림: 이미지 파일을 입력칸에 끌어다 놓거나 붙여넣기(Ctrl+V) 하면 자동 첨부됩니다.
+        </div>
+        <label for="ef-contact">담당자 (부서·연락처)</label>
+        <input id="ef-contact" placeholder="예: 이종우 과학기술전략과장(010-0000-0000)">
+        <div class="ef-btns">
+          <button class="btn-primary" id="ef-save">저장</button>
+          <button class="btn-ghost btn-danger" id="ef-clear">내용 비우기</button>
+          <span class="save-note" id="ef-note"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+"use strict";
+
+/* ── 위원 명단 (제22대 국회 후반기, 2026) ───────────── */
+const MEMBERS = [
+  { id: "song",   name: "송기헌", role: "위원장", party: "dem", pname: "더불어민주당", chair: true },
+  // 여당 (더불어민주당)
+  { id: "han",    name: "한준호", role: "간사", party: "dem", pname: "더불어민주당" },
+  { id: "kimng",  name: "김남국", role: "",     party: "dem", pname: "더불어민주당" },
+  { id: "kimwy",  name: "김우영", role: "",     party: "dem", pname: "더불어민주당" },
+  { id: "kimh",   name: "김현",   role: "",     party: "dem", pname: "더불어민주당" },
+  { id: "leeyh",  name: "이연희", role: "",     party: "dem", pname: "더불어민주당" },
+  { id: "leejh",  name: "이정헌", role: "",     party: "dem", pname: "더불어민주당" },
+  { id: "leejuh", name: "이주희", role: "",     party: "dem", pname: "더불어민주당" },
+  { id: "leehg",  name: "이훈기", role: "",     party: "dem", pname: "더불어민주당" },
+  { id: "jung",   name: "정동영", role: "",     party: "dem", pname: "더불어민주당" },
+  { id: "hwang",  name: "황정아", role: "",     party: "dem", pname: "더불어민주당" },
+  // 야당 (국민의힘)
+  { id: "choi",   name: "최형두", role: "간사", party: "ppp", pname: "국민의힘" },
+  { id: "parkjh", name: "박정하", role: "",     party: "ppp", pname: "국민의힘" },
+  { id: "seo",    name: "서천호", role: "",     party: "ppp", pname: "국민의힘" },
+  { id: "kimjg",  name: "김장겸", role: "",     party: "ppp", pname: "국민의힘" },
+  { id: "leejs",  name: "이진숙", role: "",     party: "ppp", pname: "국민의힘" },
+  { id: "cho",    name: "조경태", role: "",     party: "ppp", pname: "국민의힘" },
+  // 비교섭단체
+  { id: "kimsm",  name: "김선민", role: "", party: "cho", pname: "조국혁신당", etc: true },
+  { id: "choihj", name: "최혁진", role: "", party: "ind", pname: "무소속",     etc: true },
+];
+
+/* ── 예시 질의·답변 풀 (작년 국정감사 질답서 기반) ────── */
+const QA_POOL = [
+  { t:"지역불균형 해소", k:["지역균형발전","지역 R&D","인프라"], code:"과기1-①",
+    q:"수도권과 지방 간 불균형이 심화되고 있는데, 지역균형발전을 위한 과학기술 기반의 정책방향이 따로 있는지?",
+    a:"지역의 과학기술 역량을 강화함으로써 지역 특성에 맞는 혁신적 사업들을 추진하고, 이를 통해 지역 경제를 활성화시키는 것이 목표임.\n\n· 혁신적인 중점 기술 개발 촉진, 데이터 기반 지역 혁신역량 분석, 지방 과학기술 인프라 확충, 산학연 네트워크 강화 등을 통해 균형 잡힌 성장을 이루도록 지속 노력할 예정.\n\n[참고] 지역별 과학기술혁신계획: 14개 지역별 중점기술 분야·거점연구기관 선정 완료 (부산 이차전지·반도체, 대구 AI·헬스케어, 대전 첨단바이오·국방반도체, 경남 우주항공 등)",
+    c:"이종우 과학기술전략과장 (010-9900-6730)" },
+  { t:"지역균형발전 R&D 전략", k:["지역자율 R&D","블록펀딩"], code:"과기1-②",
+    q:"이번 정부에서 강조하는 지역자율성에 기반한 지역균형발전을 실현하기 위한 구체적인 R&D 전략은 무엇인지?",
+    a:"지역균형발전 실현을 위해서는 단순한 예산 분배를 넘어 지역이 스스로 기획하고 실행하며 성과를 책임지는 R&D 체계로의 전환이 필수적임.\n\n· 개별 부처 단위로 집행되던 지역 R&D 사업을 재구조화하여 지역이 자율적으로 기획·집행하는 '지역자율 R&D 사업'을 시범 도입하였으며, 향후 규모를 확대할 예정.\n\n[참고] 블록펀딩형 지역자율 R&D: 주력산업 고도화, 미래형 신산업 창출, 공공문제 해결, 지역 간 연계·협업의 4대 분야. 과기·산업·중기부 지특회계 합계 약 1조원 규모.",
+    c:"이종우 과학기술전략과장 (010-9900-6730)" },
+  { t:"지역과학기술혁신법 제정", k:["법 제정","지역혁신"], code:"과기1-③",
+    q:"지역과학기술혁신법을 별도로 제정할 필요가 있는지?",
+    a:"기존 법률(과학기술기본법, 지방분권균형발전법, 연구개발특구법)은 원칙·일부 사항에 한정되어 있어, 지역 과학기술 전반을 체계적으로 규율하여 지역의 역량 확충과 지역 특화 혁신을 뒷받침할 법 제정이 필요함.\n\n[발의안 주요내용] ① 부처별·사업별 산발적 지원을 종합·연계하는 전략적 지원체계 구축 ② 지역 산학연 역량 강화 및 협력 촉진 ③ 과학기술 기반 지역혁신 생태계 조성\n\n[추진계획] 민주당 조인철 의원실과 협의하여 신규 법안 추진 예정. 박충권 의원 기발의('24.6) 법안은 법안소위에서 병합 예정.",
+    c:"이종우 과학기술전략과장 (010-9900-6730)" },
+  { t:"지역자율 R&D 성과 우려", k:["수월성","성과관리"], code:"과기1-④",
+    q:"고도의 수월성과 전문성이 필요한 분야인 R&D를 지역 자율에 맡길 경우 성과 확보가 우려되는데?",
+    a:"연구개발에 지역 자율성을 부여하면 오히려 지역에 특화된 사업과 현장 수요에 맞춘 연구개발이 이루어져 실질적 성과를 창출할 수 있을 것으로 기대.\n\n· 다만 우려를 고려하여 중앙부처와 전문연구기관의 컨설팅 지원, 성과 관리 체계 확립, 지역 대학·연구소·기업 간 협력 네트워크 확대를 통해 전문성과 수월성도 확보하겠음.\n\n[성과관리] 지자체·지원기관이 함께 성과지표를 마련하고 지방과학기술진흥협의회 심의·의결로 자율성과지표 확정. 혁신본부는 전략계획서 기반 특정평가 실시.",
+    c:"이종우 과학기술전략과장 (010-9900-6730)" },
+  { t:"블록펀딩 나눠먹기 우려", k:["블록펀딩","예산 관리"], code:"과기1-⑤",
+    q:"기존 지역 R&D를 블록펀딩형 지역자율사업으로 전환할 경우 지역별 나눠먹기식 사업으로 전락할 위험이 있는데, 이에 대한 대책은?",
+    a:"성과 기반 평가 강화, 5극 3특 기반의 공동연구, 투명한 예산 관리 시스템을 통해 불필요한 사업 중복이나 단순한 나눠먹기식 예산 집행을 방지하도록 노력하겠음.\n\n[성과관리] 자체점검(지자체 자율 성과지표 마련 → 지방과학기술진흥협의회 심의·의결 확정) + 특정평가(혁신본부, 지역별 성과목표·지표·평가 시기를 설정한 전략계획서 기반 평가). 성과지표·목표 변경 시 위원회 심의·의결 필요.",
+    c:"이종우 과학기술전략과장 (010-9900-6730)" },
+  { t:"지역 R&D 총괄 거버넌스", k:["거버넌스","중복 조정"], code:"과기1-⑥",
+    q:"지역 자율성을 강화할 경우, 지역 간 유사한 사업이나 중복되는 사업을 조정하는 총괄 거버넌스가 필요할 것 같은데?",
+    a:"유사·중복 사업의 남발을 방지하기 위해 현행 지방과학기술진흥협의회를 지역 R&D의 총괄 거버넌스로 활용할 예정.\n\n· 지역 간 정보 공유, 협력 사업 촉진을 위해 과기정통부 장관과 지방시대위원장이 공동으로 협의회에 참여하는 방향으로 개편 예정.\n\n[개편안] 위원장: 과학기술부총리 및 지방시대위원장 / 위원: 관계부처 차관급 + 17개 시·도 단체장 / 기능: 권역별 맞춤형 지원 설계, '26년 이후 블록펀딩 예산 편성·배분 논의, 성과 점검 및 인센티브 평가 / 운영: 반기별 정기회 + 수시, 지역 현장 중심 개최.",
+    c:"이종우 과학기술전략과장 (010-9900-6730)" },
+  { t:"부처별 기술육성체계 비교", k:["국가전략기술","조특법","세액공제"], code:"과기2-①",
+    q:"과기정통부의 12대 국가전략기술, 50개 세부 중점기술과 달리, 재경부의 세제혜택 대상 국가전략기술은 8개 분야 78개 기술임. 부처별로 상이한 이유가 무엇인지?",
+    a:"동명(同名)의 다른 체계임. 국가전략기술육성법상 '국가전략기술'은 R&D 등을 포함한 전주기 지원에 집중하고, 조세특례제한법은 기업의 중요기술 연구개발·인프라 투자에 대한 세액공제를 목적으로 세액공제율이 가장 높은 기술을 '국가전략기술'로 명명한 것.\n\n· 조특법 78개 기술 중 수소환원제철, 지능형 선박 등을 제외한 대부분이 12대 분야 내 포괄됨.\n· 기업의 조특법 세제혜택 심사에 과기정통부도 참여(연구개발세액공제심의위원회 당연직 위원)하는 등 관계부처 간 면밀히 협의 중.\n\n[참고] 조특법 세액공제: 연구개발비 대·중견 30~40% / 중소 40~50%, 인프라 투자 15%/25% (반도체 20%/30%)",
+    c:"신소영 전략기술육성과장 (010-5665-8119)" },
+  { t:"범부처 기술관리체계 정비", k:["기술패권","체계 정비"], code:"과기2-②",
+    q:"전략기술과 유사한 이름으로 타 부처에서도 기술관리체계를 운영하고 있어, 민간 입장에서 혼선이 있음. 범부처 차원의 정비가 필요하지 않나?",
+    a:"각 기술체계는 개별 법령·목적에 따라 역할분담 중이나, '기술패권 대응'이라는 공동 목표에 따른 정비·협업이 필요하다고 생각함.\n\n· 과기·재경·산업 등 주요 부처 및 전문가가 참여하여 기술관리체계 정비·협업을 진행 중이며, 방안을 마련하여 과기장관회의에 상정·추진할 계획('26.2월).\n\n[참고] 국가전략기술(과기정통부, 12분야 50개) / 조특법 국가전략기술·신성장원천기술(재경부, 8분야 78개 등) / 국가첨단전략기술(산업부, 6분야 19개) / 국가핵심기술(산업부, 13분야 79개)",
+    c:"신소영 전략기술육성과장 (010-5665-8119)" },
+  { t:"국가전략기술 체계 개편", k:["12대 전략기술","개편"], code:"과기2-③",
+    q:"기존 12대 분야 선정 이후 3년 이상이 경과한 상황으로, 국가전략기술 체계를 어떻게 개편할 것인지?",
+    a:"관계부처 및 산·학·연 대상 수요조사, 연구자 대상 설문조사, 산업계·학계 간담회 등 연구현장과의 충분한 논의를 통해, 범부처 기술관리체계 정비 후 과기자문회의 심의를 거쳐 확정 예정(~'26 상반기).\n\n· AI전환, 통상안보 주도권, 미래혁신 기반확보 등 국가 핵심임무를 고려하여 중점 투자분야를 고도화하고자 함.\n\n[참고] 10대 국가필수전략기술('21.12) → 12대 국가전략기술 분야·50개 세부 중점기술 지정·육성 중('22.10~, 국가과학기술자문회의 전원회의 의결)",
+    c:"신소영 전략기술육성과장 (010-5665-8119)" },
+  { t:"차세대 태양광 전략기술 추가", k:["태양광","전략기술 추가"], code:"과기2-④",
+    q:"'차세대 태양광' 분야를 국가전략기술에 추가해야 하는 것 아닌지?",
+    a:"(조특법 관련 질문 시) 조특법 등 관련 법령과의 연계체계를 만드는 중에 있으며, 재경부 등 관계부처와 협의해보겠음.\n\n(R&D 등 종합 지원 관련 질문 시) 글로벌 기술패권 경쟁 관련 공급망·신산업·안보 관점에서의 전략적 가치, 관계부처 및 산학연 수요 등을 종합적으로 고려하겠음.\n\n[참고] 중국 점유율: 태양광 설치용량 약 50%, 제조산업 80% 이상(IEA, '24). 태양광 R&D 예산: '25년 614억 → '26년 1,038억원 (차세대태양전지실증 45억, 무탄소에너지핵심기술개발 81억, 태양광패널재활용기술개발 80억 등)",
+    c:"신소영 전략기술육성과장 (010-5665-8119)" },
+  { t:"과기심의회의 소속 개편", k:["거버넌스","대통령 직속"], code:"과기3-①",
+    q:"국가과학기술심의회의를 기획예산처와의 효율적 공조를 위해 국무총리 산하로 복원해야 하는 것 아닌지?",
+    a:"대통령 리더십 하 정책 추진력 확보, 정책-예산 간 일관성 유지를 위해 현행 대통령 직속 체계 유지가 바람직함.\n\n· 재경부·예산처는 이미 심의회의의 당연직 정부위원으로 포함되어 있어 부처 간 협의는 현 체계에서도 충분히 가능.\n· 오히려 국무총리 의장 체계로 전환 시 심의회 위상 저하로 과학기술이 국가 최우선 과제라는 정책적 메시지가 희석될 우려.",
+    c:"황한진 과학기술정책조정과장 (010-8956-5375)" },
+  { t:"심의회의 위상 강화", k:["위상 강화","환류 체계"], code:"과기3-②",
+    q:"R&D 예산과 정책의 중요성을 감안할 때, 심의회의의 위상 강화가 필요한 것은 아닌지?",
+    a:"운영체계 개편 등 심의회의 위상 강화 방안을 다각도로 검토하겠음.\n\n· 심의 의견에 대한 부처 이행계획 반영 여부 등 환류 체계의 수립, 하부 위원회 개편 등 실질적 의사결정 권한과 실행력을 높이기 위한 다각적인 방안 검토.",
+    c:"황한진 과학기술정책조정과장 (010-8956-5375)" },
+  { t:"한국형 ARPA-H 증액 경위", k:["ARPA-H","예타면제","증액"], code:"투자1-①",
+    q:"한국형 ARPA-H 사업은 당초 6월안에서는 71억원이었다가 8월안에서는 495억원으로 증액되었는데 졸속 증액이 아닌지?",
+    a:"당초 6월안에서는 예타 규모(총사업비 500억원) 이하로 심의하여 예산을 반영하였음.\n\n· 이후 복지부에서 동 사업의 예타면제 안건을 국무회의(8.21)에 상정하여 면제 결정이 구체화되면서, 8월 재심의안에서는 이를 반영하여 대폭 증액하였음.\n\n[경과] 복지부 1,109억원 요구 → 6월안 71억 → 7월안 101억 → 예타면제 통과('24~'33 1.9조원 요구) → 8월안 495억 → 적정성 검토 후 최종 285억원 확정('24~'32 총 1.2조원)",
+    c:"강성환 생명기초조정과장 (010-2290-9401)" },
+  { t:"ARPA-H PM 인력·전문성", k:["PM","사업화 역량"], code:"투자1-②",
+    q:"PM 주도의 프로젝트 관리가 필수적인데, PM 현원과 전문성 등에는 문제가 없는지?",
+    a:"PM 사·보임이 빈번해 프로젝트의 연속성이 저하될 우려가 있고, 현재는 대학·연구소 위주로 구성되어 사업화 역량이 미흡한 것이 사실임.\n\n· '27년 예산 배분·조정 시 인력 보강 현황을 추가 검토하여 예산에 환류하겠음.\n\n[현황] 5대 임무(① 보건안보 확립 ② 미정복질환 극복 ③ 바이오헬스 산업혁신 ④ 복지·돌봄 서비스 개선 ⑤ 필수의료 혁신) 담당 PM 중 일부 임무에 공백 존재, 산업계 출신은 소수. (출처: K-헬스미래추진단 누리집·부처 제출자료)",
+    c:"강성환 생명기초조정과장 (010-2290-9401)" },
+  { t:"R&D 예산삭감 피해규모", k:["예산삭감","피해조사"], code:"투자2-①",
+    q:"정부 R&D 예산삭감으로 실제 피해가 얼마나 발생하였는지?",
+    a:"전체 3.3만개 계속과제 중 약 69%인 2.3만개 과제에서 연구비 총 약 3.5조원이 삭감되었고, 그 외 335개 계속과제는 중단됨.\n\n· 삭감과제 기준 연구자수가 6,631명 줄었고, 과제당 평균 연구자 수도 0.6명 감소하는 등 연구현장의 인력 충격이 확인됨.",
+    c:"박상민 연구예산총괄과장 (010-3166-4327)" },
+  { t:"피해조사 목적·책임론", k:["피해조사","제도개선"], code:"투자2-②",
+    q:"피해조사로 예산삭감의 책임을 회피하려는 것은 아닌지?",
+    a:"피해 규모와 양상을 객관적으로 파악하여 유사사례 재발 방지 등을 위한 향후 제도개선을 추진하기 위함임.\n\n[제도개선 추진방향] ① 삭감방지: 정부 총지출 대비 5% 수준 R&D 투자 노력 등을 골자로 국정기획위에서 발의한 과학기술기본법 개정안의 국회 통과에 적극 협조 ② 외부 모니터링 강화: 자문회의 민간전문가에 심의 중간결과를 공유하는 절차 신설 등 예산심의 투명성 제고, 심의 과정 중 현장 의견 반영.",
+    c:"박상민 연구예산총괄과장 (010-3166-4327)" },
+  { t:"피해조사 진행 속도", k:["피해조사","연구용역"], code:"투자2-③",
+    q:"피해 복구를 위해서는 피해조사가 신속하게 진행되어야 하는데 속도가 더딘 것은 아닌지? 적어도 상반기 중에는 마무리되어야 하는 것 아닌가?",
+    a:"전체 R&D 수행부처를 대상으로 한 1단계 정량조사는 이미 완료함.\n\n· 현재 2단계 연구현장 피해사례 조사(연구용역)를 진행 중이며, 조속히 마무리하여 이를 바탕으로 제도개선을 추진해 나가겠음.\n\n[2단계 조사] 대상별(학계: 기초연구·신진연구자 피해 / 연구기관: 운영 경직성 심화 / 산업계: 중소·중견기업 피해) 및 유형별(연구인력: 인건비 삭감·채용 취소 / 연구과제: 목표 수정 / 연구환경: 장비·시설 유지보수 중단) 사례 수집·조사.",
+    c:"박상민 연구예산총괄과장 (010-3166-4327)" },
+  { t:"신진연구자 피해 집중", k:["신진연구자","인력 변동"], code:"투자2-④",
+    q:"R&D 예산삭감 피해가 신진연구자에게 집중된 것은 아닌지?",
+    a:"분석 결과, 20대 이하 연구자수는 증가(+8,044명)한 반면 30대 연구자수가 큰 폭으로 감소(△9,028명, △11.26%)했는데, 이는 신진연구자(30대)가 학생연구자(~20대)로 대체되었을 가능성도 있어 보임.\n\n[인력변동] 합계 △6,631명(△2.68%). 소속별: 산업계 △5,830명, 연구기관 △1,657명 / 연령대별: 40대 △2,819명, 50대 △1,812명, 60대 △874명.",
+    c:"박상민 연구예산총괄과장 (010-3166-4327)" },
+  { t:"피해 보완·보상 노력", k:["예산 복원","기초연구"], code:"투자2-⑤",
+    q:"예산삭감으로 인한 피해를 보완·보상하기 위해 정부 차원에서 어떠한 노력을 기울였는가?",
+    a:"예산삭감 피해가 컸던 기초연구, 출연연, 기업·사업화, 지역R&D 분야를 중심으로 '26년 R&D 예산 확대를 추진하였으며, 2단계 조사 결과를 토대로 제도개선을 검토·추진해 나갈 계획임.\n\n['26년 예산, '24년 대비] 기초연구 3조3,585억(+7,259억) / 출연연 4조147억(+7,189억) / 기업·사업화 1조9,929억(+7,265억) / 지역R&D 1조1,993억(+6,492억)\n※ 신진연구·핵심연구(유형A, 1억) 신규과제: '25년 1,285개 → '26년 2,200개",
+    c:"박상민 연구예산총괄과장 (010-3166-4327)" },
+  { t:"글로벌 R&D 특정평가 후속조치", k:["글로벌 R&D","특정평가"], code:"평가1-①",
+    q:"글로벌 R&D 특정평가 결과 문제 사업에 대한 후속조치는?",
+    a:"소관 부처의 과제별 특별평가를 거쳐 문제 과제는 예산 삭감과 과제 중단 등 엄정한 조치 예정.\n\n[문제 사업 예시] 협력 내용이 심포지엄·네트워크 활용에 그치는 과제(의사과학자 글로벌공동연구) / 해외기관 역할이 기술 자문·장비 제공·분석 컨설팅에 제한(한미혁신성과창출R&D) / 목표-세부과제 관련성 부족(국가전략기술 특화연구소: 10개 중 8개 관련성 낮음) / 성과목표를 일반 원천기술사업 성과에서 차용(보스턴코리아 공동연구지원) / 일반 R&D 성과지표만 활용(의사과학자글로벌, 한미암공동연구 등)",
+    c:"심혜영 연구평가혁신과장 (010-2618-0997)" },
+  { t:"특정평가 제도 개선", k:["IP 귀속","연구비 정산"], code:"평가1-②",
+    q:"특정평가 과정에서 발견된 제도상 문제의 개선계획은?",
+    a:"국내 기관의 IP 미확보, 해외 기관 연구비 정산 문제 등이 발견되었으며, 현장 의견수렴을 거쳐 개선 예정.\n\n[사례] IP에 해외 귀속분 존재·준거법 및 관할이 뉴욕 기준(국가전략기술 특화연구소, 한미혁신성과창출R&D) / 해외기관 단독 개발분의 IP 실시권 미확보(보스턴코리아: 준거법 뉴욕주법·ICC) / 특허 출원·유지·관리 우선권은 MIT에 부여하되 비용은 국립암센터가 부담하는 과제 존재(한미암공동연구)\n※ 해외 소재 기관·외국인에게 이체된 국제공동연구개발비는 사용실적보고서 등에서 사용된 연구개발비로 관리(연구개발비 사용 기준 제28조③)",
+    c:"심혜영 연구평가혁신과장 (010-2618-0997)" },
+  { t:"對美 협력과제 중단 리스크", k:["국제협력","국가 신뢰도"], code:"평가1-③",
+    q:"후속조치로 대미(對美) 협력 과제가 일방적으로 중단될 시, 우리나라의 국가적 신뢰도 하락 등 국제관계에 문제가 발생하지 않을지?",
+    a:"각 부처 특별평가 과정에서 해외 공동협력기관과 충분히 상의하여 후속조치를 진행하도록 가이드할 예정.\n\n※ 특히 현재 관세 인상 등 대미 관련 이슈를 고려하여, 특정평가 최종보고서의 각 부처 통보 시기(후속조치 개시 시기)를 조율 중.",
+    c:"심혜영 연구평가혁신과장 (010-2618-0997)" },
+  { t:"예타 폐지 부작용 대비", k:["예타 폐지","사전점검제도"], code:"평가2-①",
+    q:"예타 폐지에 따라 예산 낭비나 기획 부실화 등의 부작용이 발생하지 않을지?",
+    a:"예타 폐지 이후 1천억원 이상 대형 R&D는 유형과 특성을 고려한 맞춤형 사전점검제도를 통해 기획 완성도와 투자효율성을 제고할 예정.\n\n· 또한 부처 예산요구 시 사전점검 결과와 가용예산을 고려하여 부처 한도 내에서 요구하게 하여 무분별한 예산요구를 방지할 예정.\n\n[사전점검제도] 연구형 R&D: 당락 결정이 아닌 기획 보완을 위한 예산심의 사전절차로 '사업기획점검' 실시(예산요구 전년도 11~3월) / 구축형 R&D: 대형 연구인프라에 '전주기 심사제도' 도입, 단계별 점검 강화(매년 상·하반기 심사)",
+    c:"송호준 연구개발타당성심사팀장 (010-2125-0038)" },
+  { t:"제도 변화 현장 혼선", k:["제도 안착","설명회"], code:"평가2-②",
+    q:"급격한 제도 변화에 따라 현장에서 혼선이 발생하지 않을지?",
+    a:"부처, 전문기관 등을 대상으로 후속제도에 대한 설명을 지속하고 있으며, 현장의 혼선 최소화 및 제도 안착을 위해 노력하겠음.\n\n※ 부처·전문기관 대상 제도개편 방향 설명('25.10.1), 연구형 사업기획점검 설명회('25.11월, 2회) 기실시.",
+    c:"송호준 연구개발타당성심사팀장 (010-2125-0038)" },
+  { t:"예타 폐지 법안 지연", k:["법 개정","'27년 예산"], code:"평가2-③",
+    q:"예타 폐지 법안의 국회 통과 지연에 따른 후속제도 시행에 차질이 생긴 것이 아닌지? '27년도 예산안 편성 시 적용 가능한지?",
+    a:"연구형 R&D는 법이 시행되면 후속제도(사업기획점검)를 즉시 실시(2~4월)하여 이를 통해 '27년도 예산안을 편성함.\n\n· 구축형 R&D는 시행령 등 규정을 신속하게 정비(~4월)하여 5월부터 심사를 시행할 예정이며, '27년도 예산안은 예타('26-1차)를 통해 편성.\n[심사 일정] 심사신청(5월) → 대상선정(6~7월) → 심사(8~'27.3월)",
+    c:"송호준 연구개발타당성심사팀장 (010-2125-0038)" },
+  { t:"연구데이터법 기업 반대", k:["연구데이터법","영업비밀"], code:"평가3-①",
+    q:"연구데이터법에 대해 기업계가 반대하는 사유가 무엇인지 파악하고 있는지?",
+    a:"영업비밀 연구데이터를 공개하게 되는 경우 기업이 경쟁력을 상실하거나, 국가 R&D에 참여하지 않게 될 것 등에 대해 우려하는 것으로 알고 있음.",
+    c:"박진희 성과평가정책과장 (010-6818-5788)" },
+  { t:"연구데이터법 제정 계획", k:["연구데이터법","비공개 예외"], code:"평가3-②",
+    q:"연구데이터법 제정이 시급한데, 과기정통부는 어떠한 계획을 가지고 있는지?",
+    a:"기업계 의견 수렴을 통해 우려사항에 대해 청취하고, 이를 해소할 수 있는 대안을 모색하도록 하겠음.\n\n· 현재 과방위 대안에도 비공개 데이터 등에 대한 예외 규정은 있으나, 이를 보다 명확히 정의하는 방향으로 대안을 고려하고 있음.",
+    c:"박진희 성과평가정책과장 (010-6818-5788)" },
+  { t:"출연연 기관평가 주기", k:["출연연","기관평가"], code:"평가4-①",
+    q:"출연연 기관평가 주기가 1년으로 짧아지면 단기성과에 치중되고 평가부담이 늘어나는 것은 아닌지?",
+    a:"기존 계획 대비 달성도 평가 방식에서 벗어나, 중장기·고난도 연구를 통한 3건 이내 대표 연구성과 중심 평가로 전환함.\n\n· 연구실적 자동 수집, 보고서 분량 제한(30페이지), 중간점검 폐지 등 평가 절차·양식을 단순화·효율화하여 평가부담을 완화함.",
+    c:"심혜영 연구평가혁신과장 (010-2618-0997)" },
+  { t:"연구자 정보 공개 개선", k:["정보 공개","연구자"], code:"평가4-②",
+    q:"'연구자 정보 공개'의 공개 항목을 줄이는 등 개선이 필요한 것 아닌지?",
+    a:"출연연의 우수한 연구자를 국민에게 알리고 대학·기업과의 협력을 촉진하기 위해, 개인의 동의를 받아 각 기관이 자율적으로 공개범위와 수준을 정하여 추진하도록 하였음.\n\n· 공개 항목(최종학력, 전문분야, 주요경력, 연구성과, 연구참여이력, 대외활동, 정보포상 7개) 등은 연구현장의 의견을 더 듣고 '27년 평가에서 개선·보완하겠음.",
+    c:"심혜영 연구평가혁신과장 (010-2618-0997)" },
+];
+
+/* ── 기본 데이터 구성: 풀을 위원별로 배분 + 빈 행 채움 ── */
+const SLOT_COUNT = 10;
+const STORAGE_KEY = "kkamji_v1";
+const SHARED_URL = "data.json";      // 저장소에 함께 올리는 공용 데이터 파일
+const emptySlot = () => ({ t:"", k:[], code:"", q:"", a:"", c:"" });
+
+function buildDefaultData() {
+  const data = {};
+  MEMBERS.forEach(m => { data[m.id] = []; });
+  QA_POOL.forEach((qa, i) => {
+    const m = MEMBERS[i % MEMBERS.length];
+    data[m.id].push(JSON.parse(JSON.stringify(qa)));
+  });
+  MEMBERS.forEach(m => {
+    while (data[m.id].length < SLOT_COUNT) data[m.id].push(emptySlot());
+  });
+  return data;
+}
+
+/* 위원별 배열만 추려 기본 구조에 얹기 (알 수 없는 키는 무시).
+   반드시 깊은 복사 — 원본을 공유하면 편집이 공용본 사본까지 바꿔 버립니다. */
+function adoptMembers(src) {
+  const base = buildDefaultData();
+  if (src && typeof src === "object") {
+    MEMBERS.forEach(m => {
+      if (Array.isArray(src[m.id])) base[m.id] = JSON.parse(JSON.stringify(src[m.id]));
+    });
+  }
+  return base;
+}
+
+/* 로컬 작업본: { basedOn, exportedStamp, members } */
+function readLocal() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return null;
+    const p = JSON.parse(raw);
+    if (!p || typeof p !== "object") return null;
+    // 구버전(위원 배열이 최상위에 바로 있던 형식) 호환
+    if (!p.members) return { basedOn: null, exportedStamp: null, members: p };
+    return { basedOn: p.basedOn || null, exportedStamp: p.exportedStamp || null, members: p.members };
+  } catch (e) { return null; }
+}
+
+let DATA = buildDefaultData();
+let sharedStamp = null;        // 현재 적용된 공용본의 updatedAt
+let sharedInfo = null;         // 공용본 메타(작성자 등)
+let hasLocalDraft = false;     // 아직 공용본에 반영되지 않은 내 수정
+let lastExportStamp = (readLocal() || {}).exportedStamp || null;
+
+function saveData() {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({
+      basedOn: sharedStamp,
+      exportedStamp: lastExportStamp,
+      members: DATA
+    }));
+    hasLocalDraft = true;
+    renderStatus();
+    return true;
+  } catch (e) {
+    alert("저장하지 못했습니다. 브라우저 저장 용량(약 5MB)을 초과했을 수 있습니다.\n첨부 이미지를 줄이거나 '내보내기'로 백업 후 일부를 정리해 주세요.");
+    return false;
+  }
+}
+function clearLocalDraft() {
+  try { localStorage.removeItem(STORAGE_KEY); } catch (e) {}
+  hasLocalDraft = false;
+}
+
+/* ── 마크업 렌더러 (HTML 이스케이프 후 서식 적용) ───── */
+function escHtml(s) {
+  return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+}
+function mdInline(s, imgs) {
+  s = s.replace(/\{\{(img\d+)\}\}/g, (m, key) =>
+    imgs && imgs[key] ? '<img src="' + imgs[key] + '" alt="첨부 이미지">' : m);
+  s = s.replace(/!\[([^\]]*)\]\((data:image\/[^)\s]+|https?:\/\/[^)\s]+)\)/g, '<img alt="$1" src="$2">');
+  s = s.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
+  s = s.replace(/==([^=]+)==/g, "<mark>$1</mark>");
+  s = s.replace(/`([^`]+)`/g, "<code>$1</code>");
+  return s;
+}
+function mdRender(src, imgs) {
+  const lines = String(src).split("\n");
+  let html = "", listBuf = [];
+  const flushList = () => {
+    if (listBuf.length) { html += "<ul>" + listBuf.join("") + "</ul>"; listBuf = []; }
+  };
+  for (const raw of lines) {
+    const t = raw.trim();
+    if (t.startsWith("- ")) { listBuf.push("<li>" + mdInline(escHtml(t.slice(2)), imgs) + "</li>"); continue; }
+    flushList();
+    if (t === "") { html += '<div class="md-gap"></div>'; continue; }
+    if (t.startsWith("### ")) { html += "<h4>" + mdInline(escHtml(t.slice(4)), imgs) + "</h4>"; continue; }
+    if (t.startsWith("## "))  { html += "<h3>" + mdInline(escHtml(t.slice(3)), imgs) + "</h3>"; continue; }
+    if (t.startsWith("# "))   { html += "<h3>" + mdInline(escHtml(t.slice(2)), imgs) + "</h3>"; continue; }
+    if (/^---+$/.test(t)) { html += "<hr>"; continue; }
+    if (t.startsWith("> ")) { html += "<blockquote>" + mdInline(escHtml(t.slice(2)), imgs) + "</blockquote>"; continue; }
+    html += "<div>" + mdInline(escHtml(raw), imgs) + "</div>";
+  }
+  flushList();
+  return html;
+}
+
+/* ── 상태 ─────────────────────────────── */
+let selMember = MEMBERS[0].id;
+let selQ = 0;
+let editing = false;
+
+const $ = id => document.getElementById(id);
+const filled = qa => !!(qa.t || qa.q || qa.a);
+const memberById = id => MEMBERS.find(m => m.id === id);
+
+/* ── ① 위원 렌더링 ─────────────────────── */
+function renderMembers() {
+  const body = $("members-body");
+  body.textContent = "";
+
+  const chair = MEMBERS.find(m => m.chair);
+  const chairBtn = document.createElement("button");
+  chairBtn.className = "chair-box" + (selMember === chair.id ? " sel" : "");
+  chairBtn.innerHTML = '<div class="role">위 원 장</div>';
+  const nm = document.createElement("div");
+  nm.className = "nm";
+  nm.textContent = chair.name + " 위원장";
+  chairBtn.appendChild(nm);
+  chairBtn.addEventListener("click", () => selectMember(chair.id));
+  body.appendChild(chairBtn);
+
+  const cols = document.createElement("div");
+  cols.className = "party-cols";
+  const colL = document.createElement("div"); colL.className = "party-col";
+  const colR = document.createElement("div"); colR.className = "party-col";
+  colL.innerHTML = '<div class="party-label dem">여당 · 민주당</div>';
+  colR.innerHTML = '<div class="party-label ppp">야당 · 국민의힘</div>';
+
+  MEMBERS.filter(m => !m.chair && !m.etc).forEach(m => {
+    (m.party === "dem" ? colL : colR).appendChild(memberBox(m));
+  });
+  cols.appendChild(colL); cols.appendChild(colR);
+  body.appendChild(cols);
+
+  const etcLabel = document.createElement("div");
+  etcLabel.className = "etc-label";
+  etcLabel.textContent = "비교섭단체 · 무소속";
+  body.appendChild(etcLabel);
+  const etcCols = document.createElement("div");
+  etcCols.className = "etc-cols";
+  MEMBERS.filter(m => m.etc).forEach(m => etcCols.appendChild(memberBox(m)));
+  body.appendChild(etcCols);
+}
+
+function memberBox(m) {
+  const b = document.createElement("button");
+  b.className = "m-box " + m.party + (selMember === m.id ? " sel" : "");
+  const n = (DATA[m.id] || []).filter(filled).length;
+  const name = document.createElement("span");
+  name.className = "m-name";
+  name.textContent = m.name;
+  b.appendChild(name);
+  // 정당은 열 제목과 좌측 색띠로 구분되므로, 간사·비교섭단체만 부가 표시
+  const subText = m.role || (m.etc ? m.pname : "");
+  if (subText) {
+    const sub = document.createElement("span");
+    sub.className = "m-sub";
+    sub.textContent = subText;
+    b.appendChild(sub);
+  }
+  if (n > 0) {
+    const cnt = document.createElement("span");
+    cnt.className = "cnt";
+    cnt.textContent = n;
+    b.appendChild(cnt);
+  }
+  b.addEventListener("click", () => selectMember(m.id));
+  return b;
+}
+
+/* ── ② 질문 목록 렌더링 ─────────────────── */
+function renderQuestions() {
+  const m = memberById(selMember);
+  $("q-member-name").textContent = m.name + (m.role ? " " + m.role : "") + (m.chair ? "" : "");
+  const chip = $("q-member-party");
+  chip.textContent = m.pname;
+  chip.className = "p-chip " + m.party;
+
+  const filter = $("q-filter").value.trim().toLowerCase();
+  const list = $("q-list");
+  list.textContent = "";
+
+  (DATA[selMember] || []).forEach((qa, i) => {
+    if (filter) {
+      const hay = (qa.t + " " + (qa.k||[]).join(" ") + " " + qa.q + " " + qa.a).toLowerCase();
+      if (!hay.includes(filter)) return;
+    }
+    const li = document.createElement("li");
+    const btn = document.createElement("button");
+    btn.className = "q-row" + (filled(qa) ? " filled" : " empty") + (i === selQ ? " sel" : "");
+    const num = document.createElement("span");
+    num.className = "q-num";
+    num.textContent = i + 1;
+    btn.appendChild(num);
+    const main = document.createElement("div");
+    main.className = "q-main";
+    const title = document.createElement("div");
+    title.className = "q-title";
+    title.textContent = filled(qa) ? ("질문 " + (i+1) + ": " + (qa.t || "(제목 없음)")) : ("질문 " + (i+1) + " — 제목을 입력하세요");
+    main.appendChild(title);
+    if ((qa.k||[]).length) {
+      const kws = document.createElement("div");
+      kws.className = "q-kws";
+      qa.k.forEach(k => {
+        const c = document.createElement("span");
+        c.className = "kw";
+        c.textContent = "#" + k;
+        kws.appendChild(c);
+      });
+      main.appendChild(kws);
+    }
+    if (qa.code) {
+      const code = document.createElement("div");
+      code.className = "q-code";
+      code.textContent = qa.code;
+      main.appendChild(code);
+    }
+    btn.appendChild(main);
+    btn.addEventListener("click", () => selectQuestion(i));
+    li.appendChild(btn);
+    list.appendChild(li);
+  });
+}
+
+/* ── ③ 질의/답변 렌더링 ─────────────────── */
+function renderQA() {
+  const m = memberById(selMember);
+  const qa = (DATA[selMember] || [])[selQ] || emptySlot();
+  $("qa-head-title").textContent = m.name + (m.role ? " " + m.role : "") + " · 질문 " + (selQ + 1);
+  $("qa-code").textContent = qa.code || "—";
+  $("qa-code").style.display = qa.code ? "" : "none";
+
+  const qEl = $("qa-q"), aEl = $("qa-a"), cEl = $("qa-c");
+  if (filled(qa)) {
+    qEl.innerHTML = qa.q ? mdRender(qa.q, qa.imgs) : "(질문 내용 미입력)";
+    qEl.classList.remove("qa-empty");
+    aEl.innerHTML = qa.a ? mdRender(qa.a, qa.imgs) : "(답변 미입력)";
+    aEl.classList.remove("qa-empty");
+    cEl.textContent = qa.c ? "담당: " + qa.c : "";
+    cEl.style.display = qa.c ? "" : "none";
+  } else {
+    qEl.textContent = "아직 등록된 질문이 없습니다.";
+    qEl.classList.add("qa-empty");
+    aEl.textContent = "편집 모드(우측 상단 ✎)에서 질문과 답변을 작성할 수 있습니다.";
+    aEl.classList.add("qa-empty");
+    cEl.style.display = "none";
+  }
+
+  if (editing) fillEditForm(qa);
+}
+
+let pendingImgs = {};
+function fillEditForm(qa) {
+  $("ef-title").value = qa.t || "";
+  $("ef-kws").value = (qa.k || []).join(", ");
+  $("ef-code").value = qa.code || "";
+  $("ef-question").value = qa.q || "";
+  $("ef-answer").value = qa.a || "";
+  $("ef-contact").value = qa.c || "";
+  $("ef-note").textContent = "";
+  pendingImgs = Object.assign({}, qa.imgs || {});
+}
+
+/* ── 선택 동작 ─────────────────────────── */
+function selectMember(id) {
+  selMember = id;
+  selQ = 0;
+  $("q-filter").value = "";
+  renderMembers(); renderQuestions(); renderQA();
+  document.body.dataset.view = "questions";
+}
+function selectQuestion(i) {
+  selQ = i;
+  renderQuestions(); renderQA();
+  document.body.dataset.view = "qa";
+}
+
+/* ── 편집 모드 ─────────────────────────── */
+/* ── 공용 편집 암호 ─────────────────────────
+   실수로 답변을 고치는 것을 막기 위한 잠금입니다. 페이지 소스를 열어 볼 수 있는
+   사람은 우회할 수 있으므로 보안 장치가 아니며, 자료 보호는 배포 위치로 해야 합니다.
+   암호 변경: 브라우저 콘솔에서 hashPw("새암호") 를 실행해 나온 값을 아래에 붙여넣으세요. */
+const EDIT_PW_HASH = "fb85bbca-10";   // 기본 암호: kkamji2026
+function hashPw(s) {
+  let h = 2166136261;
+  for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); }
+  return ((h >>> 0).toString(16).padStart(8, "0")) + "-" + s.length;
+}
+window.hashPw = hashPw;
+const UNLOCK_KEY = "kkamji_unlocked";
+function isUnlocked() {
+  try { return sessionStorage.getItem(UNLOCK_KEY) === EDIT_PW_HASH; } catch (e) { return false; }
+}
+function requestUnlock() {
+  if (!EDIT_PW_HASH || isUnlocked()) return true;
+  const pw = prompt("편집 암호를 입력하세요.");
+  if (pw === null) return false;
+  if (hashPw(pw) !== EDIT_PW_HASH) { alert("암호가 맞지 않습니다."); return false; }
+  try { sessionStorage.setItem(UNLOCK_KEY, EDIT_PW_HASH); } catch (e) {}
+  return true;
+}
+
+$("btn-edit").addEventListener("click", () => {
+  if (!editing && !requestUnlock()) return;
+  editing = !editing;
+  document.body.classList.toggle("editing", editing);
+  $("btn-edit").classList.toggle("active", editing);
+  $("btn-edit").textContent = editing ? "✓ 편집 종료" : "✎ 편집 모드";
+  renderQA();
+});
+
+$("ef-save").addEventListener("click", () => {
+  const qa = DATA[selMember][selQ];
+  qa.t = $("ef-title").value.trim();
+  qa.k = $("ef-kws").value.split(",").map(s => s.trim()).filter(Boolean);
+  qa.code = $("ef-code").value.trim();
+  qa.q = $("ef-question").value;
+  qa.a = $("ef-answer").value;
+  qa.c = $("ef-contact").value.trim();
+  // 본문에서 더 이상 참조하지 않는 첨부 이미지는 정리
+  const used = {};
+  const body = qa.q + "\n" + qa.a;
+  Object.keys(pendingImgs).forEach(key => {
+    if (body.includes("{{" + key + "}}")) used[key] = pendingImgs[key];
+  });
+  if (Object.keys(used).length) qa.imgs = used; else delete qa.imgs;
+  const ok = saveData();
+  renderMembers(); renderQuestions();
+  if (ok) $("ef-note").textContent = "저장됨 (" + new Date().toLocaleTimeString("ko-KR") + ")";
+});
+
+$("ef-clear").addEventListener("click", () => {
+  if (!confirm("질문 " + (selQ + 1) + "의 내용을 모두 비울까요?")) return;
+  DATA[selMember][selQ] = emptySlot();
+  pendingImgs = {};
+  saveData();
+  renderMembers(); renderQuestions(); renderQA();
+});
+
+/* ── 이미지 첨부 (드래그앤드롭 / 붙여넣기) ──────────── */
+function compressImage(file) {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    const url = URL.createObjectURL(file);
+    img.onload = () => {
+      const MAX = 1400;
+      let w = img.naturalWidth, h = img.naturalHeight;
+      if (w > MAX) { h = Math.round(h * MAX / w); w = MAX; }
+      const cv = document.createElement("canvas");
+      cv.width = w; cv.height = h;
+      const cx = cv.getContext("2d");
+      cx.fillStyle = "#FFFFFF";
+      cx.fillRect(0, 0, w, h);
+      cx.drawImage(img, 0, 0, w, h);
+      URL.revokeObjectURL(url);
+      resolve(cv.toDataURL("image/jpeg", 0.85));
+    };
+    img.onerror = () => { URL.revokeObjectURL(url); reject(new Error("이미지를 읽을 수 없습니다.")); };
+    img.src = url;
+  });
+}
+function nextImgKey() {
+  let n = 0;
+  Object.keys(pendingImgs).forEach(k => {
+    const m = /^img(\d+)$/.exec(k);
+    if (m) n = Math.max(n, parseInt(m[1], 10));
+  });
+  return "img" + (n + 1);
+}
+async function insertImageFile(ta, file) {
+  if (!editing) return;
+  try {
+    const dataUrl = await compressImage(file);
+    const key = nextImgKey();
+    pendingImgs[key] = dataUrl;
+    const token = "\n{{" + key + "}}\n";
+    const pos = ta.selectionStart != null ? ta.selectionStart : ta.value.length;
+    ta.value = ta.value.slice(0, pos) + token + ta.value.slice(pos);
+    ta.focus();
+    ta.selectionStart = ta.selectionEnd = pos + token.length;
+    $("ef-note").textContent = "이미지 첨부됨 — 저장을 눌러야 반영됩니다.";
+  } catch (err) {
+    alert(err.message);
+  }
+}
+function attachImageHandlers(ta) {
+  ta.addEventListener("dragover", e => { e.preventDefault(); ta.classList.add("dragover"); });
+  ta.addEventListener("dragleave", () => ta.classList.remove("dragover"));
+  ta.addEventListener("drop", e => {
+    e.preventDefault();
+    ta.classList.remove("dragover");
+    const files = Array.from(e.dataTransfer.files || []).filter(f => f.type.startsWith("image/"));
+    files.forEach(f => insertImageFile(ta, f));
+  });
+  ta.addEventListener("paste", e => {
+    const items = Array.from(e.clipboardData.items || []).filter(it => it.type.startsWith("image/"));
+    if (!items.length) return;
+    e.preventDefault();
+    items.forEach(it => { const f = it.getAsFile(); if (f) insertImageFile(ta, f); });
+  });
+}
+attachImageHandlers($("ef-question"));
+attachImageHandlers($("ef-answer"));
+
+/* ── 글자 크기 조절 ────────────────────── */
+const FS_KEY = "kkamji_fs";
+const FS_SCALES = [1, 1.15, 1.3, 1.5, 1.75, 2];
+const FS_DEFAULT = 5; // 200% — 노안 대응 기본값
+let fsLevel = FS_DEFAULT;
+try {
+  const saved = parseInt(localStorage.getItem(FS_KEY), 10);
+  if (!isNaN(saved)) fsLevel = saved;
+} catch (e) {}
+fsLevel = Math.min(Math.max(fsLevel, 0), FS_SCALES.length - 1);
+function applyFs() {
+  document.documentElement.style.setProperty("--fs-scale", FS_SCALES[fsLevel]);
+  $("fs-level").textContent = Math.round(FS_SCALES[fsLevel] * 100) + "%";
+  try { localStorage.setItem(FS_KEY, String(fsLevel)); } catch (e) {}
+}
+$("fs-plus").addEventListener("click", () => {
+  if (fsLevel < FS_SCALES.length - 1) { fsLevel++; applyFs(); }
+});
+$("fs-minus").addEventListener("click", () => {
+  if (fsLevel > 0) { fsLevel--; applyFs(); }
+});
+applyFs();
+
+$("btn-add-q").addEventListener("click", () => {
+  DATA[selMember].push(emptySlot());
+  saveData();
+  renderQuestions();
+});
+
+$("btn-reset").addEventListener("click", () => {
+  const msg = sharedStamp
+    ? "내 수정 내용을 버리고 저장소의 공용본(data.json)으로 되돌릴까요?"
+    : "내 수정 내용을 버리고 앱에 내장된 기본 자료로 되돌릴까요?";
+  if (!confirm(msg)) return;
+  clearLocalDraft();
+  DATA = adoptMembers(sharedMembers);
+  selQ = 0;
+  renderMembers(); renderQuestions(); renderQA(); renderStatus();
+});
+
+/* ── data.json 내보내기 / 가져오기 ──────────── */
+function buildSharedFile() {
+  const who = (prompt("작성자 이름을 적어 주세요. (data.json 기록용)", lastEditor || "") || "").trim();
+  lastEditor = who;
+  try { localStorage.setItem(EDITOR_KEY, who); } catch (e) {}
+  const stamp = new Date().toISOString();
+  return {
+    stamp,
+    json: JSON.stringify({ updatedAt: stamp, updatedBy: who || "(미기재)", members: DATA }, null, 2)
+  };
+}
+
+$("btn-export").addEventListener("click", async () => {
+  const { stamp, json } = buildSharedFile();
+  // 이 파일이 저장소에 반영되면 '내 수정이 반영됨'으로 인식하기 위한 표식
+  lastExportStamp = stamp;
+  saveData();
+  if (window.claude && window.claude.downloads) {
+    try { await window.claude.downloads.save({ filename: "data.json", data: json }); return; }
+    catch (e) { /* 거절 시 아래 방식으로 */ }
+  }
+  const blob = new Blob([json], { type: "application/json" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "data.json";
+  a.click();
+  URL.revokeObjectURL(a.href);
+});
+
+$("btn-import").addEventListener("click", () => $("import-file").click());
+$("import-file").addEventListener("change", e => {
+  const f = e.target.files[0];
+  if (!f) return;
+  const reader = new FileReader();
+  reader.onload = () => {
+    try {
+      const parsed = JSON.parse(reader.result);
+      DATA = adoptMembers(parsed.members || parsed);
+      saveData();
+      selQ = 0;
+      renderMembers(); renderQuestions(); renderQA();
+      alert("데이터를 가져왔습니다.");
+    } catch (err) {
+      alert("JSON 파일을 읽을 수 없습니다: " + err.message);
+    }
+  };
+  reader.readAsText(f);
+  e.target.value = "";
+});
+
+/* ── 전체 검색 ─────────────────────────── */
+const gSearch = $("g-search"), gResults = $("g-results");
+gSearch.addEventListener("input", () => {
+  const term = gSearch.value.trim().toLowerCase();
+  gResults.textContent = "";
+  if (term.length < 1) { gResults.classList.remove("open"); return; }
+  const hits = [];
+  MEMBERS.forEach(m => {
+    (DATA[m.id] || []).forEach((qa, i) => {
+      if (!filled(qa)) return;
+      const hay = (qa.t + " " + (qa.k||[]).join(" ") + " " + qa.q + " " + qa.a + " " + qa.code).toLowerCase();
+      if (hay.includes(term)) hits.push({ m, i, qa });
+    });
+  });
+  if (!hits.length) {
+    const d = document.createElement("button");
+    d.disabled = true;
+    d.textContent = "검색 결과 없음";
+    gResults.appendChild(d);
+  } else {
+    hits.slice(0, 30).forEach(h => {
+      const b = document.createElement("button");
+      const mline = document.createElement("div");
+      mline.className = "sr-member";
+      mline.textContent = h.m.name + (h.m.role ? " " + h.m.role : "") + " · 질문 " + (h.i + 1) + (h.qa.code ? " · " + h.qa.code : "");
+      const tline = document.createElement("div");
+      tline.className = "sr-title";
+      tline.textContent = h.qa.t || "(제목 없음)";
+      b.appendChild(mline); b.appendChild(tline);
+      b.addEventListener("click", () => {
+        selMember = h.m.id; selQ = h.i;
+        gSearch.value = ""; gResults.classList.remove("open");
+        renderMembers(); renderQuestions(); renderQA();
+        document.body.dataset.view = "qa";
+      });
+      gResults.appendChild(b);
+    });
+  }
+  gResults.classList.add("open");
+});
+document.addEventListener("click", e => {
+  if (!e.target.closest(".searchwrap")) gResults.classList.remove("open");
+});
+
+/* ── 보기 방식 (한 화면 / 페이지 넘김) ───────── */
+const MODE_KEY = "kkamji_mode";
+let userMode = null;
+try { userMode = localStorage.getItem(MODE_KEY); } catch (e) {}
+if (userMode !== "panes" && userMode !== "step") userMode = null;
+
+const defaultMode = () => (window.innerWidth <= 900 ? "step" : "panes");
+function applyMode(mode) {
+  document.body.classList.toggle("mode-step", mode === "step");
+  $("mode-panes").classList.toggle("active", mode === "panes");
+  $("mode-step").classList.toggle("active", mode === "step");
+}
+function setUserMode(mode) {
+  userMode = mode;
+  try { localStorage.setItem(MODE_KEY, mode); } catch (e) {}
+  applyMode(mode);
+}
+$("mode-panes").addEventListener("click", () => setUserMode("panes"));
+$("mode-step").addEventListener("click", () => setUserMode("step"));
+window.addEventListener("resize", () => { if (!userMode) applyMode(defaultMode()); });
+
+/* ── 기타 ─────────────────────────────── */
+$("q-filter").addEventListener("input", renderQuestions);
+$("back-to-members").addEventListener("click", () => { document.body.dataset.view = "members"; });
+$("back-to-questions").addEventListener("click", () => { document.body.dataset.view = "questions"; });
+
+/* ── 공용 데이터(data.json) 동기화 ────────────
+   저장소의 data.json이 '공용본'이고, 브라우저에 남는 것은 아직 반영되지 않은
+   '내 작업본'입니다. 편집 → data.json 내보내기 → 저장소에 커밋하면 전원이 최신본을 봅니다. */
+let sharedMembers = null;   // 공용본의 위원별 데이터
+const EDITOR_KEY = "kkamji_editor";
+let lastEditor = "";
+try { lastEditor = localStorage.getItem(EDITOR_KEY) || ""; } catch (e) {}
+
+function fmtStamp(iso) {
+  if (!iso) return "";
+  const d = new Date(iso);
+  if (isNaN(d)) return "";
+  return d.toLocaleString("ko-KR", { month: "numeric", day: "numeric", hour: "2-digit", minute: "2-digit" });
+}
+function draftCount() {
+  if (!sharedMembers) return 0;
+  const base = adoptMembers(sharedMembers);
+  let n = 0;
+  MEMBERS.forEach(m => {
+    if (JSON.stringify(DATA[m.id] || []) !== JSON.stringify(base[m.id] || [])) n++;
+  });
+  return n;
+}
+function renderStatus() {
+  const chip = $("sync-chip");
+  chip.classList.remove("draft", "offline");
+  if (!sharedStamp) {
+    chip.classList.add("offline");
+    chip.textContent = "공용 파일 없음 · 이 기기에만 저장";
+    chip.title = "data.json을 찾지 못했습니다. 웹서버(예: GitHub Pages)로 열면 공용본을 함께 받습니다.";
+    return;
+  }
+  if (hasLocalDraft) {
+    chip.classList.add("draft");
+    const n = draftCount();
+    chip.textContent = "내 수정 " + (n ? n + "명 " : "") + "미반영";
+    chip.title = "편집 모드에서 'data.json 내보내기' 후 저장소에 올리면 전원에게 반영됩니다.";
+  } else {
+    chip.textContent = "공용본 최신 · " + fmtStamp(sharedStamp);
+    chip.title = "작성자: " + ((sharedInfo && sharedInfo.updatedBy) || "미기재");
+  }
+}
+$("sync-chip").addEventListener("click", () => alert($("sync-chip").title));
+
+function showBanner(text) {
+  $("banner-text").textContent = text;
+  $("banner").hidden = false;
+}
+$("bn-take-shared").addEventListener("click", () => {
+  clearLocalDraft();
+  DATA = adoptMembers(sharedMembers);
+  selQ = 0;
+  $("banner").hidden = true;
+  renderMembers(); renderQuestions(); renderQA(); renderStatus();
+});
+$("bn-keep-mine").addEventListener("click", () => {
+  $("banner").hidden = true;
+  saveData();   // 현재 공용본 기준으로 작업본을 다시 기록
+});
+
+async function syncShared() {
+  let shared = null;
+  try {
+    const res = await fetch(SHARED_URL, { cache: "no-store" });
+    if (res.ok) shared = await res.json();
+  } catch (e) { /* 파일 없음·오프라인·file:// 직접 열기 */ }
+
+  const local = readLocal();
+
+  if (!shared || !shared.members) {
+    // 공용본 없음 → 내 작업본 또는 내장 기본 자료
+    if (local) { DATA = adoptMembers(local.members); hasLocalDraft = true; }
+    renderMembers(); renderQuestions(); renderQA(); renderStatus();
+    return;
+  }
+
+  sharedMembers = shared.members;
+  sharedStamp = shared.updatedAt || null;
+  sharedInfo = shared;
+
+  if (!local) {
+    DATA = adoptMembers(sharedMembers);
+  } else if (lastExportStamp && sharedStamp === lastExportStamp) {
+    // 내가 내보낸 파일이 저장소에 반영됨 → 작업본 정리
+    DATA = adoptMembers(sharedMembers);
+    clearLocalDraft();
+    lastExportStamp = null;
+  } else if (local.basedOn === sharedStamp) {
+    // 현재 공용본 위에서 작업 중
+    DATA = adoptMembers(local.members);
+    hasLocalDraft = true;
+  } else {
+    // 내가 작업하는 사이 공용본이 갱신됨 → 사용자가 선택
+    DATA = adoptMembers(local.members);
+    hasLocalDraft = true;
+    showBanner("공용본이 갱신되었습니다 (" + fmtStamp(sharedStamp) +
+      ", 작성자 " + (shared.updatedBy || "미기재") + "). 내 수정본과 어느 쪽을 사용할까요?");
+  }
+  renderMembers(); renderQuestions(); renderQA(); renderStatus();
+}
+
+document.body.dataset.view = "members";
+applyMode(userMode || defaultMode());
+renderMembers(); renderQuestions(); renderQA(); renderStatus();
+syncShared();
+</script>
