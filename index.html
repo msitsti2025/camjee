@@ -106,7 +106,6 @@
     letter-spacing: 1px;
     box-shadow: inset 0 0 0 2px rgba(255,255,255,.25);
   }
-  .logo .name { font-size: 19px; font-weight: 800; letter-spacing: 2px; }
   .logo .sub { font-size: 12px; opacity: .75; margin-left: 2px; }
   .searchwrap { position: relative; flex: 1; max-width: 420px; margin-left: auto; }
   .searchwrap input {
@@ -546,7 +545,6 @@
   /* 좁은 화면에서는 로고 글자를 접어 검색창 폭을 확보 (도장 아이콘이 이름 역할) */
   @media (max-width: 620px) {
     header { gap: 8px; padding: 0 10px; }
-    .logo .name { display: none; }
     .searchwrap { min-width: 90px; }
     .hdr-btn { padding: 0 10px; }
     #btn-edit { font-size: 0; padding: 0 12px; }
@@ -556,12 +554,97 @@
   @media (prefers-reduced-motion: no-preference) {
     .m-box, .q-row { transition: background .12s ease; }
   }
+
+  /* ── 인쇄 (A4 한 장에 질문·답변 하나) ────────── */
+  #print-root { display: none; }
+
+  @media print {
+    @page { size: A4 portrait; margin: 14mm 15mm; }
+
+    html, body {
+      height: auto; overflow: visible;
+      background: #fff; color: #000;
+      display: block;
+      font-size: 14pt; line-height: 1.55;
+    }
+    header, main, #banner { display: none !important; }
+    #print-root { display: block; }
+
+    .print-page {
+      page-break-after: always;
+      break-after: page;
+      page-break-inside: auto;
+    }
+    .print-page:last-child { page-break-after: auto; break-after: auto; }
+
+    .pp-head {
+      display: flex; justify-content: space-between; align-items: baseline;
+      gap: 10px;
+      border-bottom: 1.5pt solid #233C6B;
+      padding-bottom: 3pt; margin-bottom: 8pt;
+    }
+    .pp-member { font-size: 14pt; font-weight: 700; color: #233C6B; }
+    .pp-no { font-size: 11pt; color: #444; white-space: nowrap; }
+    .pp-title { font-size: 20pt; font-weight: 800; margin-bottom: 9pt; line-height: 1.35; }
+    .pp-kws { font-size: 10.5pt; color: #555; margin: -6pt 0 9pt; }
+
+    .pp-label {
+      font-size: 10.5pt; font-weight: 800; letter-spacing: .12em;
+      margin-bottom: 3pt;
+    }
+    .pp-q {
+      background: #FFF6C9;
+      border: 0.8pt solid #D9C463;
+      border-left: 3pt solid #D9C463;
+      border-radius: 2pt;
+      padding: 8pt 10pt;
+      margin-bottom: 11pt;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    .pp-q .pp-label { color: #7A5F00; }
+    .pp-q .pp-body { font-weight: 700; font-size: 15pt; }
+    .pp-a { padding: 0 2pt; }
+    .pp-a .pp-label { color: #233C6B; }
+
+    .pp-body h3 { font-size: 16pt; margin: 7pt 0 3pt; }
+    .pp-body h4 { font-size: 14.5pt; margin: 6pt 0 3pt; }
+    .pp-body ul { padding-left: 14pt; margin: 3pt 0; }
+    .pp-body blockquote {
+      border-left: 2pt solid #C9B45A; padding-left: 7pt;
+      color: #444; margin: 4pt 0;
+    }
+    .pp-body code {
+      background: #EEEEEA; border-radius: 2pt; padding: 0 3pt; font-size: .92em;
+      -webkit-print-color-adjust: exact; print-color-adjust: exact;
+    }
+    .pp-body hr { border: 0; border-top: 0.6pt dashed #999; margin: 6pt 0; }
+    .pp-body mark {
+      background: #FFE24D; color: #000; padding: 0 2pt;
+      -webkit-print-color-adjust: exact; print-color-adjust: exact;
+    }
+    .pp-body img {
+      display: block; max-width: 100%; max-height: 95mm;
+      margin: 5pt 0; border: 0.5pt solid #BBB;
+      page-break-inside: avoid;
+    }
+    .pp-body .md-gap { height: .8em; }
+
+    .pp-contact {
+      margin-top: 10pt; padding-top: 5pt;
+      border-top: 0.5pt dashed #AAA;
+      font-size: 11pt; color: #444;
+    }
+    .pp-foot {
+      margin-top: 6pt;
+      font-size: 9pt; color: #888;
+    }
+  }
 </style>
 
 <header>
   <div class="logo">
-    <span class="seal" aria-hidden="true">깜지</span>
-    <span class="name">깜지</span>
+    <span class="seal">깜지</span>
     <span class="sub">과방위 국정감사 질의·답변 (2026.10)</span>
   </div>
   <div class="searchwrap">
@@ -581,6 +664,7 @@
     <button class="hdr-btn" id="btn-reset">되돌리기</button>
   </div>
   <button class="hdr-btn" id="btn-edit">✎ 편집 모드</button>
+  <button class="hdr-btn" id="btn-print" title="의원별·질문순으로 A4 한 장에 하나씩 인쇄">🖨 인쇄</button>
 </header>
 
 <div id="banner" hidden>
@@ -663,6 +747,9 @@
     </div>
   </section>
 </main>
+
+<!-- 인쇄할 때만 나타나는 영역 (인쇄 버튼을 누를 때 채워집니다) -->
+<div id="print-root" aria-hidden="true"></div>
 
 <script>
 "use strict";
@@ -1359,6 +1446,95 @@ gSearch.addEventListener("input", () => {
 document.addEventListener("click", e => {
   if (!e.target.closest(".searchwrap")) gResults.classList.remove("open");
 });
+
+/* ── 인쇄 (의원별·질문순, A4 한 장에 하나) ────── */
+function buildPrintPages() {
+  const root = $("print-root");
+  root.textContent = "";
+  const today = new Date().toLocaleDateString("ko-KR");
+  let count = 0;
+
+  MEMBERS.forEach(m => {                       // 화면과 같은 순서: 위원장 → 여당 → 야당 → 비교섭단체
+    (DATA[m.id] || []).forEach((qa, i) => {     // 질문 번호 순서 그대로
+      if (!filled(qa)) return;                  // 비어 있는 칸은 빈 페이지가 되므로 제외
+      count++;
+
+      const page = document.createElement("article");
+      page.className = "print-page";
+
+      const head = document.createElement("div");
+      head.className = "pp-head";
+      const who = document.createElement("span");
+      who.className = "pp-member";
+      who.textContent = m.name + (m.role ? " " + m.role : "") + " · " + m.pname;
+      const no = document.createElement("span");
+      no.className = "pp-no";
+      no.textContent = "질문 " + (i + 1) + (qa.code ? " · " + qa.code : "");
+      head.appendChild(who); head.appendChild(no);
+      page.appendChild(head);
+
+      const title = document.createElement("h2");
+      title.className = "pp-title";
+      title.textContent = qa.t || "(제목 없음)";
+      page.appendChild(title);
+
+      if ((qa.k || []).length) {
+        const kws = document.createElement("div");
+        kws.className = "pp-kws";
+        kws.textContent = qa.k.map(k => "#" + k).join("  ");
+        page.appendChild(kws);
+      }
+
+      const qBox = document.createElement("section");
+      qBox.className = "pp-q";
+      const qLab = document.createElement("div");
+      qLab.className = "pp-label";
+      qLab.textContent = "질 문";
+      const qBody = document.createElement("div");
+      qBody.className = "pp-body";
+      qBody.innerHTML = qa.q ? mdRender(qa.q, qa.imgs) : "(질문 내용 미입력)";
+      qBox.appendChild(qLab); qBox.appendChild(qBody);
+      page.appendChild(qBox);
+
+      const aBox = document.createElement("section");
+      aBox.className = "pp-a";
+      const aLab = document.createElement("div");
+      aLab.className = "pp-label";
+      aLab.textContent = "답 변";
+      const aBody = document.createElement("div");
+      aBody.className = "pp-body";
+      aBody.innerHTML = qa.a ? mdRender(qa.a, qa.imgs) : "(답변 미입력)";
+      aBox.appendChild(aLab); aBox.appendChild(aBody);
+      page.appendChild(aBox);
+
+      if (qa.c) {
+        const c = document.createElement("div");
+        c.className = "pp-contact";
+        c.textContent = "담당: " + qa.c;
+        page.appendChild(c);
+      }
+
+      const foot = document.createElement("div");
+      foot.className = "pp-foot";
+      foot.textContent = "깜지 · 과방위 국정감사 질의·답변 · 출력 " + today;
+      page.appendChild(foot);
+
+      root.appendChild(page);
+    });
+  });
+  return count;
+}
+
+$("btn-print").addEventListener("click", () => {
+  const n = buildPrintPages();
+  if (!n) {
+    alert("인쇄할 질문이 없습니다.\n질문 제목이나 내용이 입력된 항목만 인쇄됩니다.");
+    return;
+  }
+  // 인쇄 미리보기에서 '배경 그래픽'을 켜면 질문 칸의 노란 바탕까지 나옵니다.
+  window.print();
+});
+window.addEventListener("afterprint", () => { $("print-root").textContent = ""; });
 
 /* ── 보기 방식 (한 화면 / 페이지 넘김) ───────── */
 const MODE_KEY = "kkamji_mode";
